@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-background: rgba(40, 40, 39, 0.45);
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --box-shadow: 0 1% 45% 0.06;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+}
+
+body {
+  background: #1b1b1b !important;
+}
+
+/* .label-floating input,
+.label-floating label,
+.label-floating textarea,
+.label-floating select {
+  padding-top: 1.4rem;
+}
+
+.label-floating input:not(:placeholder-shown),
+.label-floating textarea:not(:placeholder-shown) {
+  padding-top: 1.4rem;
+  transition: all 0.2s ease-in-out;
+}
+.label-floating input:not(:placeholder-shown) ~ label,
+.label-floating textarea:not(:placeholder-shown) ~ label,
+.label-floating select ~ label {
+  padding-top: 0.25rem;
+  font-size: 0.8rem;
+  transition: all 0.2s ease-in-out;
+  color: gray;
+} */
+
+.label-floating input:not(:placeholder-shown) {
+  padding-top: 1.4rem;
+}
+.label-floating input:not(:placeholder-shown) ~ label {
+  font-size: 0.6rem;
+  transition: all 0.2s ease-in-out;
+  color: #1f9d55;
+}
