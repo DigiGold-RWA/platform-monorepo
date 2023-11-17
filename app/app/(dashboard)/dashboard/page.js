@@ -210,23 +210,7 @@ const Dashboard = () => {
           </div>
           {/* </Suspense> */}
 
-          {user && user.fireblock_vault_id && (
-            <>
-              <DashboardDrawer
-                isOpen={depositIsOpen}
-                onClose={onDepositClose}
-                btnRef={depositBtnRef}
-                user={user}
-              />
-
-              {/* <WithdrawDrawer
-                                isOpen={withdrawIsOpen}
-                                onClose={onWithdrawClose}
-                                btnRef={withdrawBtnRef}
-                                user={user}
-                            /> */}
-            </>
-          )}
+          
         </>
       )}
     </>

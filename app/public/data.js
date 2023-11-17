@@ -1,77 +1,77 @@
-export const Downloads = [
-    {
-        id: 1,
-        file: {
-            name: "Certificates 232006",
-            url: "/images/certificate1.svg",
-            download_url: "/232006.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-    {
-        id: 2,
-        file: {
-            name: "Certificates 232014",
-            url: "/images/certificate1.svg",
-            download_url: "/232014.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-    {
-        id: 3,
-        file: {
-            name: "Certificates 232015",
-            url: "/images/certificate1.svg",
-            download_url: "/232015.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-    {
-        id: 4,
-        file: {
-            name: "Certificates 232016",
-            url: "/images/certificate1.svg",
-            download_url: "/232016.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-    {
-        id: 5,
-        file: {
-            name: "Certificates 232017",
-            url: "/images/certificate1.svg",
-            download_url: "/232017.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-    {
-        id: 6,
-        file: {
-            name: "Certificates 404451",
-            url: "/images/certificate1.svg",
-            download_url: "/404451.pdf",
-        },
-        icons: {
-            download: "Download",
-            file: "/images/download.svg",
-        },
-    },
-];
+// export const Downloads = [
+//     {
+//         id: 1,
+//         file: {
+//             name: "Certificates 232006",
+//             url: "/images/certificate1.svg",
+//             download_url: "/232006.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+//     {
+//         id: 2,
+//         file: {
+//             name: "Certificates 232014",
+//             url: "/images/certificate1.svg",
+//             download_url: "/232014.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+//     {
+//         id: 3,
+//         file: {
+//             name: "Certificates 232015",
+//             url: "/images/certificate1.svg",
+//             download_url: "/232015.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+//     {
+//         id: 4,
+//         file: {
+//             name: "Certificates 232016",
+//             url: "/images/certificate1.svg",
+//             download_url: "/232016.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+//     {
+//         id: 5,
+//         file: {
+//             name: "Certificates 232017",
+//             url: "/images/certificate1.svg",
+//             download_url: "/232017.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+//     {
+//         id: 6,
+//         file: {
+//             name: "Certificates 404451",
+//             url: "/images/certificate1.svg",
+//             download_url: "/404451.pdf",
+//         },
+//         icons: {
+//             download: "Download",
+//             file: "/images/download.svg",
+//         },
+//     },
+// ];
 
 export const investmentData = [
     {
