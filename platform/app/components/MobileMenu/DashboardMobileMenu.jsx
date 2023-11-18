@@ -10,6 +10,7 @@ import { Category } from 'react-iconly';
 import { LogoutIcon } from '../IconComponent';
 import { signOut } from 'next-auth/react';
 import { DashboardMenuContext } from '@/app/utils/dashboardContext';
+import { menuLinks } from '@/app/lib/constants';
 
 const DashboardMobileMenu = () => {
   const { toggleDashMenu, showDashMenu } =
@@ -18,39 +19,12 @@ const DashboardMobileMenu = () => {
   const pathname = usePathname();
 
   const wrapperClasses = classNames(
-    'h-full dashboardsidebar pb-4 bg-white fixed lg:hidden justify-between shadow-sm scrollbar-change flex-col overflow-y-auto overflow-x-hidden border-r border-[#EDEFF3] w-80 transition duration-300 ease-in-out',
+    'h-full dashboardsidebar pb-4 bg-white fixed lg:hidden justify-between shadow-sm scrollbar-change flex-col overflow-y-auto overflow-x-hidden border-r border-[#EDEFF3] w-80 transition duration-300 ease-in-out z-50',
     {
       'block open': showDashMenu,
     //   '-left-[400px] transition duration-300 ease-in-out': !showDashMenu,
     }
   );
-
-  const menuLinks = [
-    {
-      label: 'Dashboard',
-      href: '/dashboard',
-      icon: <Category size={16} />,
-    },
-    {
-      label: 'My Portfolio',
-      href: '/my-portfolio',
-      icon: <RecordCircle size={16} />,
-    },
-    {
-      label: 'Profile',
-      href: '/profile',
-      icon: <Profile size={16} />,
-    },
-    {
-      label: 'Sign Out',
-      href: '/signout',
-      action: (e) => {
-        e.preventDefault();
-        signOut();
-      },
-      icon: <LogoutIcon size={16} />,
-    },
-  ];
 
   return (
     <>
@@ -61,18 +35,18 @@ const DashboardMobileMenu = () => {
 
         }}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <div className="px-4">
             <div className="flex items-center justify-center py-3 border-b  border-[#8D8E8E]  relative h-16 ">
               <div className="px-3 w-full block h-full ">
                 <Link
                   href={'/dashboard'}
-                  className="flex items-center w-full justify-center h-full"
+                  className="flex items-center w-full justify-start h-full"
                 >
                   <Image
-                    src="/Logo/logo_dash.png"
-                    height={90}
-                    width={90}
+                    src="/Logo/logo_main.svg"
+                    height={40}
+                    width={40}
                     className="transition 300ms ease object-contain w-auto h-auto mr-2"
                     priority
                     alt="logo dash"
@@ -83,8 +57,8 @@ const DashboardMobileMenu = () => {
             </div>
           </div>
 
-          <nav className="mt-6 md:mt-3 grow pl-4">
-            <div className=" flex-wrap pl-4">
+          <nav className="mt-6 md:mt-3 grow ">
+            <div className=" flex-wrap ">
               {menuLinks.map((menuItem) => (
                 <Link
                   key={menuItem.label}
@@ -93,11 +67,10 @@ const DashboardMobileMenu = () => {
                   className={`menu-item w-full font-thin ${
                     pathname == menuItem.href ||
                     pathname.startsWith(`${menuItem.href}/`)
-                      ? 'bg-[#EAFCFC] text-[#008080] border-r-4 border-[#008080]'
-                      : 'text-[#737070] border-r-4 border-transparent'
-                  }  flex items-center py-3 px-5  my-2 transition-colors duration-200 ease-in hover:bg-[#EAFCFC] hover:text-[#008080] justify-start text-sm hover:border-[#008080]`}
+                      ? 'bg-[#7B6941] text-white '
+                      : 'text-[#737070]  border-transparent'
+                  }  flex items-center py-3 px-5  my-2 transition-colors duration-200 ease-in hover:bg-[#7B6941] hover:text-white justify-start text-sm `}
                 >
-                  <span className="text-left px-3">{menuItem.icon}</span>
                   <span className={classNames('mx-2 text-sm font-normal ')}>
                     {menuItem.label}
                   </span>

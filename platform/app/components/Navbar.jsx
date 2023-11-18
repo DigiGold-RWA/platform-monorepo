@@ -10,7 +10,7 @@ import { Category } from 'react-iconly';
 import { LogoutIcon } from './IconComponent';
 import { signOut } from 'next-auth/react';
 import { menuLinks } from '../lib/constants';
-// import '../navbar.css';
+import '../navbar.css';
 
 const Navbar = () => {
   const contextValue = useContext(DashboardMenuContext) || {};
@@ -19,12 +19,12 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="bg-[#1B1B1B] border-b border-[#463a3a] z-10">
+      <header className="bg-[#1B1B1B] border-b border-[#373636] z-10">
         <div className="container mx-auto px-4 lg:px-0">
           <nav className="flex items-center justify-between flex-wrap py-4 ">
             <div className="flex items-start justify-start flex-shrink-0 text-white mr-6">
               <Link
-                href="/"
+                href="/dashboard"
                 className="text-xl  font-semibold font-heading"
               >
                 <Image
@@ -36,18 +36,18 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="block lg:hidden">
-              <div className="flex gap-5">
-                <button className="flex items-center  px-3 py-2 border rounded text-[#45CD85] border-[#45CD85] ">
-                  <svg
-                    className="fill-current h-3 w-3"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                  </svg>
-                </button>
-              </div>
+              <button
+                className={`navbar-burger flex items-center py-3 px-3 text-white  rounded relative transition-all duration-150 ease-linear ${
+                  showDashMenu ? 'open' : ''
+                }`}
+                id="nav-icon3"
+                onClick={toggleDashMenu}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
             </div>
             <div className="w-full hidden  flex-grow lg:flex lg:items-center lg:w-auto ">
               <div className="text-sm lg:flex-grow flex-row gap-6 flex ">
@@ -78,11 +78,11 @@ const Navbar = () => {
                 </Link> */}
               </div>
               <div className="lg:flex lg:items-center lg:w-auto">
-                <div className="flex items-center">
-                  <Global color='#ffffff' size={22}/>
+                <div className="flex items-center bg-card-background">
+                  <Global color="#ffffff" size={22} />
                   <select
                     defaultValue={0}
-                    className="px-1 py-2 rounded-[4px] focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm bg-transparent text-white bg-gray-100"
+                    className="px-1 py-2 rounded-[4px] focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm  text-white bg-[#1b1b1b]"
                   >
                     <option value={0}>English</option>
                     <option value={1}>Français</option>

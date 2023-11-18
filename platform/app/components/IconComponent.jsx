@@ -286,19 +286,19 @@ const PlayIcon = () => {
   );
 };
 
-const MoneyReceiveIcon = () => {
+const MoneyReceiveIcon = ({size}) => {
   return (
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width={size ? size : '32'}
+        height={size ? size : '32'}
         viewBox="0 0 24 24"
         fill="none"
       >
         <g
-          opacity=".4"
-          stroke="#008080"
+          opacity="1"
+          stroke="#FFCC29"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -307,14 +307,14 @@ const MoneyReceiveIcon = () => {
         </g>
         <path
           d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2"
-          stroke="#4F4F4F"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>
         <path
           d="M17 3v4h4M22 2l-5 5"
-          stroke="#4F4F4F"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -386,19 +386,19 @@ const TelegramIcon = () => {
   );
 };
 
-const CardReceiveIcon = () => {
+const CardReceiveIcon = ({size}) => {
   return (
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width={size ? size : '32'}
+        height={size ? size : '32'}
         viewBox="0 0 24 24"
         fill="none"
       >
         <path
           d="M2 8.5h12.5M6 16.5h2M10.5 16.5h4"
-          stroke="#4F4F4F"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeMiterlimit="10"
           strokeLinecap="round"
@@ -406,14 +406,14 @@ const CardReceiveIcon = () => {
         ></path>
         <path
           d="M22 14.03v2.08c0 3.51-.89 4.39-4.44 4.39H6.44C2.89 20.5 2 19.62 2 16.11V7.89c0-3.51.89-4.39 4.44-4.39h8.06"
-          stroke="#4F4F4F"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></path>
         <g
-          opacity=".4"
-          stroke="#008080"
+          opacity="1"
+          stroke="#FFCC29"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"

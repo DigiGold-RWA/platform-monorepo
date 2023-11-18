@@ -25,6 +25,8 @@ import axios from 'axios';
 import Image from 'next/image';
 import { getSession } from 'next-auth/react';
 import { EyeIcon } from '@/app/components/IconComponent';
+import DepositModal from '@/app/components/Modals/DepositModal';
+import { user } from '@/public/data';
 // import { transactionHistory } from '@/public/data';
 
 const Dashboard = () => {
@@ -33,7 +35,7 @@ const Dashboard = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [transactionHistory, setTransactionHistory] = useState([]);
 
-  const [user, setUser] = useState('praise');
+  // const [user, setUser] = useState('praise');
   // const authUser = useSessionUser();
   const authUser = null;
 
@@ -71,17 +73,17 @@ const Dashboard = () => {
   //     }
   // }, [user]);
 
-  // const {
-  //     isOpen: depositIsOpen,
-  //     onOpen: onDepositOpen,
-  //     onClose: onDepositClose,
-  // } = useDisclosure();
+  const {
+    isOpen: depositIsOpen,
+    onOpen: onDepositOpen,
+    onClose: onDepositClose,
+  } = useDisclosure();
 
-  // const {
-  //     isOpen: withdrawIsOpen,
-  //     onOpen: onWithdrawOpen,
-  //     onClose: onWithdrawClose,
-  // } = useDisclosure();
+  const {
+    isOpen: withdrawIsOpen,
+    onOpen: onWithdrawOpen,
+    onClose: onWithdrawClose,
+  } = useDisclosure();
   const depositBtnRef = useRef();
   const withdrawBtnRef = useRef();
 
@@ -92,7 +94,7 @@ const Dashboard = () => {
           <Notification user={user} />
 
           <div>
-            <div className="w-full flex items-center justify-between flex-wrap mb-6">
+            <div className="w-full flex items-center justify-between flex-wrap mb-6 gap-2">
               <PageTitle title={'Welcome to DigiGold'} />
               <div className="flex items-center gap-5 flex-wrap">
                 <button
@@ -105,7 +107,7 @@ const Dashboard = () => {
                 </button>
                 <button
                   ref={depositBtnRef}
-                  // onClick={onDepositOpen}
+                  onClick={onDepositOpen}
                   className="flex bg-[#FFCC29] px-6 py-3 rounded-lg text-[#484848] text-sm"
                 >
                   Deposit USDT{' '}
@@ -198,7 +200,7 @@ const Dashboard = () => {
                         alt="No Transaction"
                         height={150}
                         width={100}
-                        className='object-contain'
+                        className="object-contain"
                         //   layout="responsive"
                       />
                       <p className="text-sm text-[#C0C0C0]">No transactions</p>
@@ -209,8 +211,17 @@ const Dashboard = () => {
             </div>
           </div>
           {/* </Suspense> */}
+        </>
+      )}
 
-          
+      {user && user.fireblock_vault_id && (
+        <>
+          <DepositModal
+            isOpen={depositIsOpen}
+            onClose={onDepositClose}
+            btnRef={depositBtnRef}
+            user={user}
+          />
         </>
       )}
     </>

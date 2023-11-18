@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-// import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 import Navbar from "../components/Navbar";
+import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 
 export default async function layout({ children }) {
 
@@ -19,7 +19,7 @@ export default async function layout({ children }) {
                 </div>
             </div>
 
-            {/* <DashboardMobileMenu /> */}
+            <DashboardMobileMenu />
         </>
     );
 }

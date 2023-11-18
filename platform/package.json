@@ -19,6 +19,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@transak/transak-sdk": "^2.0.0",
     "@vercel/analytics": "^1.1.1",
+    "@videojs/themes": "^1.0.1",
     "algosdk": "^2.7.0",
     "antd": "^5.10.3",
     "apexcharts": "^3.44.0",
@@ -42,13 +43,14 @@
     "sequelize": "^6.34.0",
     "utf-8-validate": "^5.0.10",
     "uuid": "^9.0.1",
+    "video.js": "^8.6.1",
     "ws": "^8.14.2"
   },
   "devDependencies": {
     "autoprefixer": "^10",
-    "postcss": "^8",
-    "tailwindcss": "^3",
     "eslint": "^8",
-    "eslint-config-next": "13.5.4"
+    "eslint-config-next": "13.5.4",
+    "postcss": "^8",
+    "tailwindcss": "^3"
   }
 }

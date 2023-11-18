@@ -47,6 +47,10 @@ body {
   background: #1b1b1b !important;
 }
 
+.no-border{
+  border: 0px !important;
+}
+
 .news__card {
   transition: all 0.3s ease-in-out;
 }

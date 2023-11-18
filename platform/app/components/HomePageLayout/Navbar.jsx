@@ -7,7 +7,7 @@ import { ArrowDown, ArrowDown2, Global } from 'iconsax-react';
 import { MenuContext } from '@/app/utils/context';
 
 const Navbar = () => {
-  // const { toggle, showMenu } = useContext(MenuContext) || {};
+  const { toggle, showMenu } = useContext(MenuContext) || {};
 
   return (
     <>
@@ -28,13 +28,12 @@ const Navbar = () => {
             </div>
             <div className="lg:hidden">
               <button
-                className={`navbar-burger flex items-center py-2 px-3 text-[#11161F]  rounded relative transition-all duration-150 ease-linear`}
-                id="nav-icon3"
-                // onClick={toggle}
-              >
-                {/* ${
+                className={`navbar-burger flex items-center py-2 px-3 text-[#11161F]  rounded relative transition-all duration-150 ease-linear ${
                   showMenu ? 'open' : ''
-                } */}
+                }`}
+                id="nav-icon3"
+                onClick={toggle}
+              >
                 {/* <div id="nav-icon3"> */}
                 <span></span>
                 <span></span>
@@ -44,15 +43,14 @@ const Navbar = () => {
               </button>
               <nav
                 id="mobile-nav"
-                className={`absolute top-full z-20 left-0 w-full px-4 overflow-hidden transition-all duration-300 ease-in-out  shadow-lg ring-1 ring-gray-900/5 bg-[#008080] mainNav  `}
-              >
-                {/* ${
+                className={`absolute top-full z-20 left-0 w-full px-4 overflow-hidden transition-all duration-300 ease-in-out  shadow-lg mainNav bg-[#1b1b1b] border-b border-[#373636]  ${
                   showMenu ? 'show' : ''
-                } */}
-                <ul className="bg-[#008080] py-4">
+                }`}
+              >
+                <ul className=" py-4 bg-[#1b1b1b]">
                   <li>
                     <Link
-                      className="flex text-white hover:bg-gray-800/10 py-2 px-2 rounded-[4px]"
+                      className="flex text-white hover:bg-card-background  py-2 px-2 rounded-[4px]"
                       href="/"
                     >
                       Contact
@@ -60,7 +58,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      className="flex text-white hover:bg-gray-800/10 py-2 px-2 rounded-[4px]"
+                      className="flex text-white hover:bg-card-background  py-2 px-2 rounded-[4px]"
                       href="/report"
                     >
                       Audit & Compliance
@@ -68,9 +66,8 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      className="flex text-white hover:bg-gray-800/10 py-2 px-2 rounded-[4px]"
-                      href="https://digicask.gitbook.io/digicask-docs/"
-                      target="_blank"
+                      className="flex text-white hover:bg-card-background py-2 px-2 rounded-[4px]"
+                      href=""
                     >
                       Docs
                     </Link>
@@ -79,7 +76,7 @@ const Navbar = () => {
                     <div className="">
                       <select
                         defaultValue={0}
-                        className="px-1 py-2 rounded-[4px] focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm bg-transparent bg-gray-100"
+                        className="px-1 py-2 rounded-[4px] focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm  bg-[#1b1b1b] text-white w-full"
                       >
                         <option value={0}>English</option>
                         <option value={1}>Français</option>
@@ -92,7 +89,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      className="flex text-white hover:bg-gray-800/10 px-2 py-2 rounded-[4px]"
+                      className=" mt-4 lg:mt-0 text-[#484848]  bg-[#FFCC29] rounded-lg px-6 py-2 transition duration-300 ease text-sm text-center h-12 flex items-center justify-center"
                       href="/auth/login"
                     >
                       Open App
@@ -175,7 +172,7 @@ const Navbar = () => {
                     <div>
                       <select
                         defaultValue={0}
-                        className="px-1 py-1 rounded-lg focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm bg-transparent "
+                        className="px-1 py-1 rounded-lg focus-visible:outline-none focus-within:outline-none focus:outline-none text-sm bg-[#1b1b1b]"
                       >
                         <option value={0}>English</option>
                         <option value={1}>Français</option>

@@ -175,4 +175,5 @@ export const user = {
     email: 'mailpraiseudeh@gmail.com',
     dob: '21 July, 2000',
     address: 'Earth',
+    fireblock_vault_id: '123456789'
 }
