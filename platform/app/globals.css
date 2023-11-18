@@ -145,7 +145,7 @@ body {
 
 
 /* chart */
-.tradingview-widget-container iframe:last-child{
+.home__chart .tradingview-widget-container iframe:last-child{
   display: none !important;
 }
 

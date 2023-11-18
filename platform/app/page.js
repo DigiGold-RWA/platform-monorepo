@@ -116,7 +116,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="max-h-[500px] h-[300px] lg:h-[450px]">
+              <div className="max-h-[500px] h-[300px] lg:h-[450px] home__chart">
                 <HomeChart range={currentRange} key={currentRange} />
               </div>
 

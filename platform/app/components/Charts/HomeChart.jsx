@@ -43,7 +43,6 @@ function HomeChart({range}) {
           "maLineWidth": 1,
           "maLength": 9,
           "backgroundColor": "#1b1b1b",
-          
           "lineWidth": 3,
           "lineType": 0,
           "dateRanges": [
