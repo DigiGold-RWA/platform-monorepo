@@ -89,7 +89,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      className=" mt-4 lg:mt-0 text-[#484848]  bg-[#FFCC29] rounded-lg px-6 py-2 transition duration-300 ease text-sm text-center h-12 flex items-center justify-center"
+                      className=" mt-4 lg:mt-0 text-[#484848]  bg-[#FFCC29] rounded-lg px-6 py-2 transition duration-300 ease text-sm text-center h-12 flex items-center justify-center "
                       href="/auth/login"
                     >
                       Open App
