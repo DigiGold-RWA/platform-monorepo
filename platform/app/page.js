@@ -6,8 +6,38 @@ import { Blogs, Services } from './lib/constants';
 import Footer from './components/HomePageLayout/Footer';
 import Navbar from './components/HomePageLayout/Navbar';
 import PricingTable from './components/PricingTable';
+import HomeChart from './components/Charts/HomeChart';
+import { useState } from 'react';
 
 export default function Home() {
+  const [currentRange, setCurrentRange] = useState('all');
+  const DateRanges = [
+    {
+      title: 'Year to date',
+      perc: '+10.00%',
+      value: 'ytd',
+      id: '1',
+    },
+    {
+      title: '1 Year',
+      perc: '+20.69%',
+      value: '12m',
+      id: '2',
+    },
+    {
+      title: '5 years',
+      perc: '+62.87%',
+      value: '60m',
+      id: '3',
+    },
+
+    {
+      title: 'All',
+      perc: '+9614.29%',
+      value: 'all',
+      id: '4',
+    },
+  ];
   return (
     <main>
       <Navbar />
@@ -15,7 +45,8 @@ export default function Home() {
         <div className="container px-4">
           <div className="max-w-3xl w-full mx-auto gap-8 flex flex-col items-center justify-center h-full text-center text-white">
             <h1 className="text-5xl font-bold leading-snug">
-              Fully Backed <span>1:1</span> Tokenized Gold
+              Fully Backed <span className="text-[#FFCC29]">1:1</span> Tokenized
+              Gold
             </h1>
             <p>
               Experience the future of Gold ownership. Securely own as little as
@@ -65,16 +96,65 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="how-it-works" className=' pt-[80px] lg:pt-[100px] pb-[50px] lg:pb-[50px]'>
+      <section className=" pt-[80px] lg:pt-[100px] pb-[50px] lg:pb-[50px] h-full">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col justify-center items-center w-full mb-4">
+            <h1 className="text-center text-4xl font-bold leading-snug text-white">
+              Gold price Performance uSD
+            </h1>
+          </div>
+          <div className="bg-card-background p-2 md:p-5 rounded-2xl">
+            <div className="p-4 lg:p-8 ">
+              <div className="w-full flex items-start justify-between flex-col md:gap-0 gap-2 text-white pb-3">
+                <h4 className="text-xl pb-3">Gold ($US / OZ)</h4>
+                <h5 className="text-base text-[#C0C0C0]">PNL 30 Days</h5>
+                <p className=' text-sm'>
+                  + $0.00
+                  <span className="ml-1 text-[#8BFFC9]">
+                    + 2.0%
+                  </span>
+                </p>
+              </div>
+
+              <div className="max-h-[500px] h-[300px] lg:h-[450px]">
+                <HomeChart range={currentRange} key={currentRange} />
+              </div>
+
+              <div className="flex items-center justify-between flex-row gap-3 w-full mt-4">
+                {DateRanges.map((range, index) => (
+                  <button
+                    key={index}
+                    className={`flex flex-col justify-center items-center text-xs py-2 px-3 w-auto lg:w-1/2 rounded-2xl text-white ${
+                      range.value == currentRange ? 'bg-[#505050]' : ''
+                    } `}
+                    onClick={(e) => {
+                      setCurrentRange(range.value);
+                      // setSelectedAPY(plan.apy);
+                    }}
+                  >
+                    <span className="text-lg">{range.title}</span>
+                    <span className="text-sm text-[#8BFFC9]">{range.perc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="how-it-works"
+        className=" pt-[80px] lg:pt-[100px] pb-[50px] lg:pb-[50px] min-h-[300px] md:min-h-[400px] lg:min-h-[510px]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col justify-center items-center w-full">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
               How it works
             </h1>
           </div>
-          <div className="relative pt-10 pb-10">
-            <div className="relative items-center h-[300px] md:h-[500px] lg:h-[610px] w-full">
-              <VideoPlayer />
+          <div className="relative pt-5 pb-10">
+            <div className="relative items-center h-full w-full">
+              <VideoPlayer/>
             </div>
           </div>
         </div>
@@ -120,7 +200,7 @@ export default function Home() {
       </section>
 
       <section className="pt-[80px] lg:pt-[120px] pb-[80px] lg:pb-[120px]">
-        <div className="container mx-auto max-w-6xl ">
+        <div className="container mx-auto max-w-6xl px-4">
           <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-8">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
               Why choose $DGold?

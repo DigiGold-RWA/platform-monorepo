@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
+// import { getServerSession } from "next-auth";
 // import { authConfig } from "../lib/auth";
 
 export default async function layout({ children }) {

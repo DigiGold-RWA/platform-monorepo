@@ -141,3 +141,23 @@ body {
   transition: all 0.2s ease-in-out;
   color: #1f9d55;
 }
+
+
+
+/* chart */
+.tradingview-widget-container iframe:last-child{
+  display: none !important;
+}
+
+
+/* videojs */
+.vjs_video_3-dimensions.vjs-fluid:not(.vjs-audio-only-mode) {
+  padding-top: 60% ;
+}
+
+.vjs-poster,
+.video-js {
+    /* background: yellow !important; */
+    background: #1b1b1b !important;
+
+}

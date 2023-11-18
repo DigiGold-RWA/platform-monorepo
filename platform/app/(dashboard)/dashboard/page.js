@@ -20,10 +20,10 @@ import CardComponent from '@/app/components/PageLayout/CardComponent';
 import MainComponent from '@/app/components/PageLayout/MainComponent';
 import { PageTitle } from '@/app/components/PageLayout/PageTitle';
 import TransactionsTable from '@/app/components/DataTable/TransactionsTable';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Image from 'next/image';
-import { getSession } from 'next-auth/react';
+// import { getSession } from 'next-auth/react';
 import { EyeIcon } from '@/app/components/IconComponent';
 import DepositModal from '@/app/components/Modals/DepositModal';
 import { user } from '@/public/data';
@@ -39,22 +39,22 @@ const Dashboard = () => {
   // const authUser = useSessionUser();
   const authUser = null;
 
-  const getAssets = async () => {
-    const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
-    const res = await axios.get(`${hostUrl}/api/customer/asset`, {
-      withCredentials: true,
-    });
+  // const getAssets = async () => {
+  //   const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
+  //   const res = await axios.get(`${hostUrl}/api/customer/asset`, {
+  //     withCredentials: true,
+  //   });
 
-    return res?.data?.data;
-  };
-  const getTransactionHistory = async () => {
-    const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
-    const res = await axios.get(`${hostUrl}/api/customer/transactions`, {
-      withCredentials: true,
-    });
+  //   return res?.data?.data;
+  // };
+  // const getTransactionHistory = async () => {
+  //   const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
+  //   const res = await axios.get(`${hostUrl}/api/customer/transactions`, {
+  //     withCredentials: true,
+  //   });
 
-    return res?.data?.data;
-  };
+  //   return res?.data?.data;
+  // };
 
   // useEffect(() => {
   //     if (user && user?.fireblock_vault_id) {

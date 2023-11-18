@@ -8,7 +8,7 @@ import { RecordCircle, Profile, Global } from 'iconsax-react';
 import Image from 'next/image';
 import { Category } from 'react-iconly';
 import { LogoutIcon } from './IconComponent';
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
 import { menuLinks } from '../lib/constants';
 import '../navbar.css';
 

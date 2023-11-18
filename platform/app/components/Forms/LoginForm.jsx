@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SocialLogin from './FormComponents/SocialLogin';
 import { LoaderIcon } from '../IconComponent';
-import { signIn } from 'next-auth/react';
-import { getCsrfToken } from 'next-auth/react';
+// import { signIn } from 'next-auth/react';
+// import { getCsrfToken } from 'next-auth/react';
 import axios from 'axios';
 
 const LoginForm = () => {

@@ -51,7 +51,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       className="flex text-white hover:bg-card-background  py-2 px-2 rounded-[4px]"
-                      href="/"
+                      href="/contact"
                     >
                       Contact
                     </Link>
@@ -136,7 +136,7 @@ const Navbar = () => {
                   <div className="menu-dropdown">
                     <ul className="space-y-3 text-left text-white text-base">
                       <li>
-                        <Link href={'/#how-it-works'}>Overview</Link>
+                        <Link href={'/'}>Overview</Link>
                       </li>
                       <li className="flex items-center justify-between">
                         <Link href={'/'}>FAQs</Link>

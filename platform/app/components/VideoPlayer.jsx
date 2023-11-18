@@ -11,11 +11,11 @@ const VideoPlayer = () => {
     const themeName = "sea";
     const options = {
         controls: true,
-        responsive: true,
+        // responsive: true,
         fluid: true,
         sources: [
             {
-                src: "/teaser.mp4",
+                src: "https://digicask.s3.ap-south-1.amazonaws.com/How+DCask+Works+-+720.mp4",
                 type: "video/mp4",
             },
         ],
@@ -49,7 +49,7 @@ const VideoPlayer = () => {
         <div data-vjs-player>
             <video
                 ref={videoRef}
-                className={`video-js vjs-big-play-centered vjs-theme-sea`}
+                className={`video-js vjs-big-play-centered vjs-theme-sea h-52`}
             />
         </div>
     );

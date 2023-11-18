@@ -8,13 +8,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import ExchangeForm from '@/app/components/Forms/ExchangeForm';
+import ExchangeChart from '@/app/components/Charts/ExchangeChart';
 
 const Exchange = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [plans, setPlans] = useState([]);
-  const [investments, setInvestments] = useState([]);
-  const [usdcBalance, setUsdcBalance] = useState(0);
-  const [dcaskBalance, setDcaskBalance] = useState(0);
 
   return (
     <div>
@@ -23,7 +19,7 @@ const Exchange = () => {
       </div>
 
       <div className="flex w-full gap-5 md:flex-nowrap flex-wrap">
-        <div className="w-full md:w-5/12">
+        <div className="w-full md:w-4/12">
           <div className="bg-card-background p-5 rounded-2xl">
             <div className="p-4 lg:p-8">
               <div className="text-white mb-5">
@@ -33,15 +29,9 @@ const Exchange = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-7/12">
-          <div>
-            <Image
-              src="/images/graph.png"
-              alt="No Transaction"
-              height={200}
-              width={100}
-              layout="responsive"
-            />
+        <div className="w-full md:w-8/12">
+          <div className='h-[500px] w-full rounded-2xl bg-card-background'>
+            <ExchangeChart/>
           </div>
         </div>
       </div>
