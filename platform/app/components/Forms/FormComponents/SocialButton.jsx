@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 
 const SocialButton = ({ social, disabled }) => {
     const handleLogin = (e, social) => {
         e.preventDefault();
-        signIn(social, {
-            callbackUrl: `${window.location.origin}/dashboard`,
-        });
+        // signIn(social, {
+        //     callbackUrl: `${window.location.origin}/dashboard`,
+        // });
     };
 
     return (

@@ -8,7 +8,7 @@ import { RecordCircle, Profile } from 'iconsax-react';
 import Image from 'next/image';
 import { Category } from 'react-iconly';
 import { LogoutIcon } from '../IconComponent';
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
 import { DashboardMenuContext } from '@/app/utils/dashboardContext';
 import { menuLinks } from '@/app/lib/constants';
 
@@ -19,7 +19,7 @@ const DashboardMobileMenu = () => {
   const pathname = usePathname();
 
   const wrapperClasses = classNames(
-    'h-full dashboardsidebar pb-4 bg-white fixed lg:hidden justify-between shadow-sm scrollbar-change flex-col overflow-y-auto overflow-x-hidden border-r border-[#EDEFF3] w-80 transition duration-300 ease-in-out z-50',
+    'h-full dashboardsidebar pb-4 bg-[#1b1b1b] fixed lg:hidden justify-between shadow-sm scrollbar-change flex-col overflow-y-auto overflow-x-hidden border-r border-[#373636] w-80 transition duration-300 ease-in-out z-50',
     {
       'block open': showDashMenu,
     //   '-left-[400px] transition duration-300 ease-in-out': !showDashMenu,
@@ -37,7 +37,7 @@ const DashboardMobileMenu = () => {
       >
         <div className="flex flex-col ">
           <div className="px-4">
-            <div className="flex items-center justify-center py-3 border-b  border-[#8D8E8E]  relative h-16 ">
+            <div className="flex items-center justify-center py-3 border-b  border-[#373636]  relative h-16 ">
               <div className="px-3 w-full block h-full ">
                 <Link
                   href={'/dashboard'}
@@ -68,7 +68,7 @@ const DashboardMobileMenu = () => {
                     pathname == menuItem.href ||
                     pathname.startsWith(`${menuItem.href}/`)
                       ? 'bg-[#7B6941] text-white '
-                      : 'text-[#737070]  border-transparent'
+                      : 'text-white  border-transparent'
                   }  flex items-center py-3 px-5  my-2 transition-colors duration-200 ease-in hover:bg-[#7B6941] hover:text-white justify-start text-sm `}
                 >
                   <span className={classNames('mx-2 text-sm font-normal ')}>
