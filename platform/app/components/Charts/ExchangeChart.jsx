@@ -52,7 +52,7 @@ const ExchangeChart = () => {
 
   return (
     <div
-      className="tradingview-widget-container rounded-2xl"
+      className="tradingview-widget-container"
       style={{ height: '100%', width: '100%' }}
     >
       <div

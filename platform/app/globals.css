@@ -161,3 +161,9 @@ body {
     background: #1b1b1b !important;
 
 }
+
+#tradingview_ad54c iframe{
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+}
+
