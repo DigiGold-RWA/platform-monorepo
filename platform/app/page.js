@@ -100,20 +100,13 @@ export default function Home() {
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col justify-center items-center w-full mb-4">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
-              Gold price Performance uSD
+              Gold price Performance USD
             </h1>
           </div>
           <div className="bg-card-background p-2 md:p-5 rounded-2xl">
             <div className="p-4 lg:p-8 ">
               <div className="w-full flex items-start justify-between flex-col md:gap-0 gap-2 text-white pb-3">
                 <h4 className="text-xl pb-3">Gold ($US / OZ)</h4>
-                <h5 className="text-base text-[#C0C0C0]">PNL 30 Days</h5>
-                <p className=' text-sm'>
-                  + $0.00
-                  <span className="ml-1 text-[#8BFFC9]">
-                    + 2.0%
-                  </span>
-                </p>
               </div>
 
               <div className="max-h-[500px] h-[300px] lg:h-[450px] home__chart">
@@ -129,11 +122,10 @@ export default function Home() {
                     } `}
                     onClick={(e) => {
                       setCurrentRange(range.value);
-                      // setSelectedAPY(plan.apy);
                     }}
                   >
-                    <span className="text-lg">{range.title}</span>
-                    <span className="text-sm text-[#8BFFC9]">{range.perc}</span>
+                    <span className="text-xs md:text-lg">{range.title}</span>
+                    <span className="text-[9px] md:text-sm text-[#8BFFC9]">{range.perc}</span>
                   </button>
                 ))}
               </div>
@@ -154,7 +146,7 @@ export default function Home() {
           </div>
           <div className="relative pt-5 pb-10">
             <div className="relative items-center h-full w-full">
-              <VideoPlayer/>
+              <VideoPlayer />
             </div>
           </div>
         </div>
