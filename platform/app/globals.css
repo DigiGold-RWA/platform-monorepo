@@ -47,7 +47,7 @@ body {
   background: #1b1b1b !important;
 }
 
-.no-border{
+.no-border {
   border: 0px !important;
 }
 
@@ -142,31 +142,26 @@ body {
   color: #1f9d55;
 }
 
-
-
 /* chart */
-.home__chart .tradingview-widget-container iframe:last-child{
+.home__chart .tradingview-widget-container iframe:last-child {
   display: none !important;
 }
 
-
 /* videojs */
 .vjs_video_3-dimensions.vjs-fluid:not(.vjs-audio-only-mode) {
-  padding-top: 60% ;
+  padding-top: 60%;
 }
 
 .vjs-poster,
 .video-js {
-    /* background: yellow !important; */
-    background: #1b1b1b !important;
-
+  /* background: yellow !important; */
+  background: #1b1b1b !important;
 }
 
-#tradingview_ad54c iframe{
-	border-bottom-left-radius: 16px;
-	border-bottom-right-radius: 16px;
+#tradingview_ad54c iframe {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
-
 
 .transaction_card::-webkit-scrollbar {
   width: 1px;
@@ -174,15 +169,13 @@ body {
 }
 
 .transaction_card::-webkit-scrollbar-thumb {
-  background: #1b1b1b;
-
+  background: rgba(40, 40, 39, 0.45);
 
   border-radius: 6px;
 }
 
 .transaction_card::-webkit-scrollbar-track {
-  background: rgba(40, 40, 39, 0.45);
-
+  background: #1b1b1b;
 }
 
 /* .transaction_card::-webkit-scrollbar-thumb:hover {

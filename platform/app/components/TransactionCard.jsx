@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
 
+const truncateActivity = (activity) => {
+  if (activity) return `${activity.slice(0, 12)}...`;
+};
+
 const TransactionCard = ({ trans, index }) => {
   const statusTypes = {
     success: 0,
@@ -51,6 +55,7 @@ const TransactionCard = ({ trans, index }) => {
                 {trans.expense_type == 0 ? 'Expenses' : 'Top Up'}
               </h2>
               <p className="text-xl">{trans.activity}</p>
+              {/* <p className="text-xl">{truncateActivity(trans.activity)}</p> */}
               <p className="text-xs text-[#C0C0C0]">
                 {trans.date} {trans.time}
               </p>
@@ -59,9 +64,7 @@ const TransactionCard = ({ trans, index }) => {
             <div className="space-y-1 flex items-end justify-end flex-col">
               <h2 className="card-title sm:text-lg md:text-2xl lg:text-2xl flex items-center gap-2">
                 {trans.expense_type == 0 ? '-' : '+'} {trans.amount}{' '}
-                <span className=" text-white text-xs">
-                  USD
-                </span>
+                <span className=" text-white text-xs">USD</span>
               </h2>
               <TransactionStatus status={trans.status} />
             </div>

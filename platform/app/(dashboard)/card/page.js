@@ -7,6 +7,7 @@ import { EyeIcon } from '@/app/components/IconComponent';
 import { Eye, EyeSlash } from 'iconsax-react';
 import { transacData } from '@/public/data';
 import TransactionCard from '@/app/components/TransactionCard';
+import EmptyState from '@/app/components/EmptyState';
 
 const GoldCard = () => {
   const [visibleCard, setVisibleCard] = useState(false);
@@ -162,7 +163,9 @@ const GoldCard = () => {
                     />
                   </div>
                   <div className="space-y-1 flex-1">
-                    <h2 className="card-title text-sm">Today&apos;s Spending</h2>
+                    <h2 className="card-title text-sm">
+                      Today&apos;s Spending
+                    </h2>
                     <p className="text-sm">
                       <span className="font-bold text-xl">0.00</span> USD
                     </p>
@@ -196,14 +199,17 @@ const GoldCard = () => {
                 </div>
 
                 <div className="w-full my-3 px-3 space-y-3 h-[420px] overflow-y-scroll transaction_card">
-                  {transacData.map((trans, index) => (
-                    // <>
-                      <TransactionCard
-                        key={index}
-                        trans={trans}
-                      />
-                    // </>
-                  ))}
+                  {transacData.length > 0 ? (
+                    transacData.map((trans, index) => (
+                      // <>
+                      <TransactionCard key={index} trans={trans} />
+                      // </>
+                    ))
+                  ) : (
+                    <>
+                      <EmptyState title={'No transactions yet'} />
+                    </>
+                  )}
                 </div>
               </div>
             </div>

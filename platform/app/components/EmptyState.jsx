@@ -7,7 +7,7 @@ const EmptyState = ({title}) => {
     <div className="flex items-center h-full w-full justify-center py-12">
       <div>
         <Image
-          src="/images/Wallet.png"
+          src="/images/no-transactions.png"
           alt="wallet"
           width={150}
           height={150}
