@@ -50,7 +50,7 @@ export default function Home() {
             </h1>
             <p>
               Experience the future of Gold ownership. Securely own as little as
-              0.5g ($32)Tokenized Gold backed by 99.9% of pure Gold vaulted in
+              1g ($64)Tokenized Gold backed by 99.9% of pure Gold vaulted in
               Dubai without any associated risk.
             </p>
 
@@ -241,13 +241,13 @@ export default function Home() {
                   height={200}
                   className="object-contain"
                 />
-                <Image
+                {/* <Image
                   src="/images/partners/dmcc1.png"
                   alt="dmcc"
                   width={200}
                   height={200}
                   className="object-contain"
-                />
+                /> */}
                 <Image
                   src="/images/partners/chainanalysis1.png"
                   alt="chainanalysis1"

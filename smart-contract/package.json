@@ -1,5 +1,11 @@
 {
   "name": "hardhat-project",
+  "scripts": {
+    "prettier:dryrun": "prettier ./contracts/**/*.sol test/**/*.js ./scripts/**/*.js",
+    "prettier:write": "prettier --write ./contracts/**/*.sol test/**/*.js ./scripts/**/*.js --config ./prettierrc.json",
+    "lint:sol": "solhint contracts/**/*.sol -f table contracts/*.sol",
+    "vun:check": "slither . --exclude solc-version,low-level-calls,different-pragma-directives-are-used,divide-before-multiply,assembly-usage,incorrect-versions-of-solidity,block-timestamp,incorrect-versions-of-solidity,conformance-to-solidity-naming-conventions"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
@@ -12,10 +18,17 @@
     "@types/chai": "^4.2.0",
     "@types/mocha": ">=9.1.0",
     "chai": "^4.2.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "ethers": "^6.8.1",
     "hardhat": "^2.19.1",
     "hardhat-gas-reporter": "^1.0.8",
-    "solidity-coverage": "^0.8.1",
+    "prettier": "^3.1.0",
+    "prettier-plugin-solidity": "^1.2.0",
+    "solhint": "^4.0.0",
+    "solhint-plugin-prettier": "^0.1.0",
+    "solidity-coverage": "^0.8.5",
     "ts-node": ">=8.0.0",
     "typechain": "^8.1.0",
     "typescript": ">=4.5.0"

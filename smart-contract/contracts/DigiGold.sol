@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
@@ -7,9 +7,29 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20Pausable
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "./WithBlockedList.sol";
+
+/*
+
+   Copyright DigiGold.finance 2023
+
+   Author Oluwafemi Alofe
+
+   Licensed under the Apache License, Version 2.0
+   http://www.apache.org/licenses/LICENSE-2.0
+
+*/
 
 /// @custom:security-contact engineering@digigold.finance
-contract DigiGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, ERC20PausableUpgradeable, AccessControlUpgradeable, UUPSUpgradeable {
+contract DigiGold is
+    Initializable,
+    ERC20Upgradeable,
+    ERC20BurnableUpgradeable,
+    ERC20PausableUpgradeable,
+    AccessControlUpgradeable,
+    UUPSUpgradeable,
+    WithBlockedList
+{
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
@@ -19,9 +39,12 @@ contract DigiGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, 
         _disableInitializers();
     }
 
-    function initialize(address defaultAdmin, address pauser, address minter, address upgrader)
-        initializer public
-    {
+    function initialize(
+        address defaultAdmin,
+        address pauser,
+        address minter,
+        address upgrader
+    ) public initializer {
         __ERC20_init("DigiGold", "DGOLD");
         __ERC20Burnable_init();
         __ERC20Pausable_init();
@@ -43,22 +66,54 @@ contract DigiGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, 
         _unpause();
     }
 
+    function transfer(
+        address _recipient,
+        uint256 _amount
+    ) public virtual override onlyNotBlocked returns (bool) {
+        require(
+            _recipient != address(this),
+            "ERC20: transfer to the contract address"
+        );
+        return super.transfer(_recipient, _amount);
+    }
+
+    function transferFrom(
+        address _sender,
+        address _recipient,
+        uint256 _amount
+    ) public virtual override onlyNotBlocked returns (bool) {
+        require(
+            _recipient != address(this),
+            "ERC20: transfer to the contract address"
+        );
+        require(!isBlocked[_sender]);
+        return super.transferFrom(_sender, _recipient, _amount);
+    }
+
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
         _mint(to, amount);
     }
 
-    function _authorizeUpgrade(address newImplementation)
-        internal
-        onlyRole(UPGRADER_ROLE)
-        override
-    {}
+    function _authorizeUpgrade(
+        address newImplementation
+    ) internal override onlyRole(UPGRADER_ROLE) {}
 
-    // The following functions are overrides required by Solidity.
-
-    function _update(address from, address to, uint256 value)
-        internal
-        override(ERC20Upgradeable, ERC20PausableUpgradeable)
-    {
+    // This function is an override required by Solidity.
+    function _update(
+        address from,
+        address to,
+        uint256 value
+    ) internal override(ERC20Upgradeable, ERC20PausableUpgradeable) {
         super._update(from, to, value);
     }
+
+    function destroyBlockedFunds(address _blockedUser) public onlyOwner {
+        require(isBlocked[_blockedUser], "User is not blocked");
+        uint blockedFunds = balanceOf(_blockedUser);
+        _burn(_blockedUser, blockedFunds);
+
+        emit DestroyedBlockedFunds(_blockedUser, blockedFunds);
+    }
+
+    event DestroyedBlockedFunds(address indexed _blockedUser, uint _balance);
 }
