@@ -167,3 +167,24 @@ body {
 	border-bottom-right-radius: 16px;
 }
 
+
+.transaction_card::-webkit-scrollbar {
+  width: 1px;
+  background: rgba(40, 40, 39, 0.45);
+}
+
+.transaction_card::-webkit-scrollbar-thumb {
+  background: #1b1b1b;
+
+
+  border-radius: 6px;
+}
+
+.transaction_card::-webkit-scrollbar-track {
+  background: rgba(40, 40, 39, 0.45);
+
+}
+
+/* .transaction_card::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
