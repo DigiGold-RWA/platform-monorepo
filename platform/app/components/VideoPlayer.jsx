@@ -36,13 +36,13 @@ const VideoPlayer = () => {
             playerRef.current = videojs(videoElement, options);
         }
 
-        return () => {
-            //   const player = playerRef.current;
-            if (player) {
-                player.dispose();
-                playerRef.current = null;
-            }
-        };
+        // return () => {
+        //     //   const player = playerRef.current;
+        //     if (player) {
+        //         player.dispose();
+        //         playerRef.current = null;
+        //     }
+        // };
     }, [options, videoRef, playerRef]);
 
     return (
