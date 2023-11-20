@@ -15,7 +15,7 @@ const GoldCard = () => {
     <>
       <div>
         <div className="mb-4">
-          <PageTitle title={'Exchange'} />
+          <PageTitle title={'Gold Card'} />
         </div>
 
         <div className="w-full  rounded-2xl pb-12 mb-5">
