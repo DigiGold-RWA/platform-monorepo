@@ -70,10 +70,7 @@ contract DigiGold is
         address _recipient,
         uint256 _amount
     ) public virtual override onlyNotBlocked returns (bool) {
-        require(
-            _recipient != address(this),
-            "ERC20: transfer to the contract address"
-        );
+        require(_recipient != address(this), "ERC20: transfer to the contract");
         return super.transfer(_recipient, _amount);
     }
 
@@ -82,11 +79,8 @@ contract DigiGold is
         address _recipient,
         uint256 _amount
     ) public virtual override onlyNotBlocked returns (bool) {
-        require(
-            _recipient != address(this),
-            "ERC20: transfer to the contract address"
-        );
-        require(!isBlocked[_sender]);
+        require(_recipient != address(this), "ERC20: transfer to contract");
+        require(!isBlocked[_sender], "Sender is blocked");
         return super.transferFrom(_sender, _recipient, _amount);
     }
 
@@ -94,9 +88,10 @@ contract DigiGold is
         _mint(to, amount);
     }
 
+    // This function is an override required by Solidity.
     function _authorizeUpgrade(
         address newImplementation
-    ) internal override onlyRole(UPGRADER_ROLE) {}
+    ) internal override onlyRole(UPGRADER_ROLE) {} // solhint-disable-line no-empty-blocks
 
     // This function is an override required by Solidity.
     function _update(
@@ -107,7 +102,7 @@ contract DigiGold is
         super._update(from, to, value);
     }
 
-    function destroyBlockedFunds(address _blockedUser) public onlyOwner {
+    function destroyBlockedFunds(address _blockedUser) public onlyRole(MINTER_ROLE) {
         require(isBlocked[_blockedUser], "User is not blocked");
         uint blockedFunds = balanceOf(_blockedUser);
         _burn(_blockedUser, blockedFunds);

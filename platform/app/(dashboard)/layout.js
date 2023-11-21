@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 
 export default async function layout({ children }) {
-
     return (
         <>
             <div className="h-screen flex flex-row justify-start bg-[]">
@@ -12,7 +11,7 @@ export default async function layout({ children }) {
                     <main className="main-wrapper">
                         <Navbar />
 
-                        <div className=" container h-full py-2 lg:py-4 px-4 lg:px-0">
+                        <div className=" container h-full py-2 lg:py-4 px-4 lg:px-4">
                             {children}
                         </div>
                     </main>
