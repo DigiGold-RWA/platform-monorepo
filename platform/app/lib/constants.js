@@ -72,6 +72,10 @@ export const menuLinks = [
         label: "Profile",
         href: "/profile",
     },
+    {
+        label: "Gold Card",
+        href: "/card",
+    },
 ];
 
 export const Help = [
