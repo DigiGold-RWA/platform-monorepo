@@ -3,13 +3,14 @@ import Navbar from '../components/HomePageLayout/Navbar';
 import Footer from '../components/HomePageLayout/Footer';
 import Link from 'next/link';
 import PricingTable from '../components/PricingTable';
+import Image from 'next/image';
 
 const Report = () => {
   return (
     <main>
       <Navbar />
-      <section className="w-full grid grid-cols-1 md:grid-cols-1 min-h-[36.25rem] py-12">
-        <div className="container px-4">
+      <section className="w-full grid grid-cols-1 md:grid-cols-1 min-h-[36.25rem] py-12 relative">
+        <div className="container px-4 relative">
           <div className="max-w-3xl w-full mx-auto gap-8 flex flex-col items-center justify-center h-full text-center text-white">
             <h1 className="text-5xl font-bold leading-snug">
               Staying transparent with our reserve
@@ -29,7 +30,17 @@ const Report = () => {
               </Link>
             </div>
           </div>
+
+          
         </div>
+        {/* <Image
+            src="/images/bq(3).svg"
+            alt="bg"
+            width={600}
+            height={250}
+            // fill 
+            className="object-center object-contain absolute left-[4  00px] pointer-events-none max-w-3xl mx-auto "
+          /> */}
       </section>
 
       <section className="pt-[80px] lg:pt-[120px] pb-[80px] lg:pb-[120px]">

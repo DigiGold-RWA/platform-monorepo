@@ -3,8 +3,14 @@ import Navbar from '../components/HomePageLayout/Navbar';
 import Footer from '../components/HomePageLayout/Footer';
 import CardComponent from '../components/PageLayout/CardComponent';
 import ContactForm from '../components/Forms/ContactForm';
-import { MapIcon, TelegramIcon, TwitterIcon, YoutubeIcon } from '../components/IconComponent';
+import {
+  MapIcon,
+  TelegramIcon,
+  TwitterIcon,
+  YoutubeIcon,
+} from '../components/IconComponent';
 import Image from 'next/image';
+import ContactMap from '../components/Map/ContactMap';
 
 const Contact = () => {
   return (
@@ -37,8 +43,14 @@ const Contact = () => {
                     </a>
                   </p>
                 </div>
-                <div className='h-52 lg:h-96 w-full block relative my-4'>
-                    <Image src={'/images/map.png'} alt='map' fill className='object-cover' />
+                <div className="h-52 lg:h-96 w-full block relative my-4">
+                  {/* <ContactMap /> */}
+                  <Image
+                    src={'/images/map.png'}
+                    alt="map"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <div className="flex items-start justify-start gap-3">
