@@ -152,7 +152,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className=" pt-[80px] lg:pt-[100px] pb-[80px] lg:pb-[100px]">
+      <section className=" pt-[80px] lg:pt-[100px] pb-[60px] lg:pb-[80px]">
         <div className="container max-w-7xl mx-auto px-4 lg:px-0 ">
           <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-8">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
@@ -230,7 +230,7 @@ export default function Home() {
                   src="/images/partners/tigerresearch.png"
                   alt="tigerresearch"
                   width={200}
-                  height={200}
+                  height={250}
                   className="object-contain"
                 />
                 {/* <Image

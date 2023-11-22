@@ -15,7 +15,7 @@ const VideoPlayer = () => {
         fluid: true,
         sources: [
             {
-                src: "https://digicask.s3.ap-south-1.amazonaws.com/How+DCask+Works+-+720.mp4",
+                src: "#",
                 type: "video/mp4",
             },
         ],

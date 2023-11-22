@@ -1,9 +1,15 @@
 const { ethers, upgrades } = require("hardhat");
+require("dotenv").config();
 
-async function main() {
+async function main(d) {
     // Deploying
     const DigiGold = await ethers.getContractFactory("DigiGold");
-    const instance = await upgrades.deployProxy(DigiGold, []);
+    const instance = await upgrades.deployProxy(DigiGold, [
+        process.env.DEPLOYER_WALLET_ADDRESS,
+        process.env.DEPLOYER_WALLET_ADDRESS,
+        process.env.DEPLOYER_WALLET_ADDRESS,
+        process.env.DEPLOYER_WALLET_ADDRESS,
+    ]);
     await instance.waitForDeployment();
 
     // Upgrading
