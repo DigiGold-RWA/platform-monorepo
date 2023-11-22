@@ -286,6 +286,13 @@ export default function Home() {
                 />
 
                 <Image
+                  src="/images/partners/alchemy.png"
+                  alt="alchemy"
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                />
+                <Image
                   src="/images/partners/digioracle.svg"
                   alt="Digioracle"
                   width={200}
