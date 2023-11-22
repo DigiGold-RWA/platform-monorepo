@@ -151,7 +151,7 @@ const Navbar = () => {
                         <Link href={'/'}>Fees structure</Link>
                       </li>
                       <li className="flex items-center justify-between">
-                        <Link href={'/'}>Whitespace</Link>
+                        <Link href={'/'}>Whitepaper</Link>
                       </li>
                     </ul>
                   </div>
