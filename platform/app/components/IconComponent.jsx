@@ -286,7 +286,7 @@ const PlayIcon = () => {
   );
 };
 
-const MoneyReceiveIcon = ({size}) => {
+const MoneyReceiveIcon = ({ size }) => {
   return (
     <>
       <svg
@@ -386,7 +386,7 @@ const TelegramIcon = () => {
   );
 };
 
-const CardReceiveIcon = ({size}) => {
+const CardReceiveIcon = ({ size }) => {
   return (
     <>
       <svg
@@ -420,6 +420,25 @@ const CardReceiveIcon = ({size}) => {
         >
           <path d="M20 3.5v6l2-2M20 9.5l-2-2"></path>
         </g>
+      </svg>
+    </>
+  );
+};
+
+const ArrowRightIcon2 = () => {
+  return (
+    <>
+      <svg
+        width="22"
+        height="6"
+        viewBox="0 0 22 6"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 3L17 0.113249V5.88675L22 3ZM0 3.5H17.5V2.5H0V3.5Z"
+          fill="white"
+        />
       </svg>
     </>
   );
@@ -635,4 +654,5 @@ export {
   PlayIcon,
   TelegramIcon,
   LoaderIcon,
+  ArrowRightIcon2,
 };

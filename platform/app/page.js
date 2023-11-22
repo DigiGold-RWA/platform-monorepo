@@ -8,6 +8,7 @@ import Navbar from './components/HomePageLayout/Navbar';
 import PricingTable from './components/PricingTable';
 import HomeChart from './components/Charts/HomeChart';
 import { useState } from 'react';
+import { ArrowRightIcon, ArrowRightIcon2 } from './components/IconComponent';
 
 export default function Home() {
   const [currentRange, setCurrentRange] = useState('all');
@@ -42,7 +43,7 @@ export default function Home() {
     <main>
       <Navbar />
       <section className="w-full grid grid-cols-1 md:grid-cols-1 min-h-[36.25rem] py-12">
-        <div className="container px-4">
+        <div className="container px-4 relative">
           <div className="max-w-3xl w-full mx-auto gap-8 flex flex-col items-center justify-center h-full text-center text-white">
             <h1 className="text-5xl font-bold leading-snug">
               Fully Backed <span className="text-[#FFCC29]">1:1</span> Tokenized
@@ -70,15 +71,32 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          <Image
+            src="/images/bq(1).svg"
+            alt="bg"
+            width={500}
+            height={450}
+            // fill
+            className="object-contain absolute  pointer-events-none right-0 bottom-0"
+          />
+          <Image
+            src="/images/bq(2).svg"
+            alt="bg"
+            width={500}
+            height={250}
+            // fill
+            className="object-contain absolute  pointer-events-none left-0 top-0"
+          />
         </div>
       </section>
 
-      <section className="px-4">
+      <section className="px-4 relative">
         <div
-          className="container mx-auto max-w-5xl px-4 py-8 rounded-[24px] bg-card-background "
+          className="container mx-auto max-w-5xl px-4 py-8 rounded-[24px] bg-card-background relative z-10"
           style={{ backdropFilter: 'blur(10px)' }}
         >
-          <div className=" w-full h-full flex items-center justify-center text-white max-w-2xl mx-auto">
+          <div className=" w-full h-full flex items-center justify-center text-white max-w-2xl mx-auto ">
             <div className="card p-[2rem] text-center space-y-5">
               <p className="text-base">
                 Our tokenized gold is minted s $DGoldtoken. With 1 $DGold
@@ -93,7 +111,16 @@ export default function Home() {
               </div>
             </div>
           </div>
+          
         </div>
+        <Image
+            src="/images/Group 48.svg"
+            alt="bg"
+            width={250}
+            height={450}
+            // fill
+            className="object-contain absolute  pointer-events-none right-40 -bottom-20 opacity-60 -z-0"
+          />
       </section>
 
       <section className=" pt-[80px] lg:pt-[100px] pb-[50px] lg:pb-[50px] h-full">
@@ -125,7 +152,9 @@ export default function Home() {
                     }}
                   >
                     <span className="text-xs md:text-lg">{range.title}</span>
-                    <span className="text-[9px] md:text-sm text-[#8BFFC9]">{range.perc}</span>
+                    <span className="text-[9px] md:text-sm text-[#8BFFC9]">
+                      {range.perc}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -154,12 +183,12 @@ export default function Home() {
 
       <section className=" pt-[80px] lg:pt-[100px] pb-[60px] lg:pb-[80px]">
         <div className="container max-w-7xl mx-auto px-4 lg:px-0 ">
-          <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-8">
+          <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-2">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
               Why stress when you can move your gold around in your wallet
             </h1>
           </div>
-          <div className="relative pt-10 pb-10">
+          <div className="relative pt-5 pb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Services.map((service, index) => (
                 // <DistCard key={index} distillery={distillery} />
@@ -191,26 +220,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-[80px] lg:pt-[120px] pb-[80px] lg:pb-[120px]">
-        <div className="container mx-auto max-w-6xl px-4">
+      <section className="pt-[60px] lg:pt-[80px] pb-[80px] lg:pb-[120px] relative">
+        <div className="container mx-auto max-w-6xl px-4 z-10">
           <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-8">
             <h1 className="text-center text-4xl font-bold leading-snug text-white">
               Why choose $DGold?
             </h1>
           </div>
           <div
-            className="rounded-[24px] bg-card-background "
+            className="rounded-[24px] bg-card-background z-10"
             style={{ backdropFilter: 'blur(10px)' }}
           >
-            <div className=" w-full h-full text-white">
+            <div className=" w-full h-full text-white z-10">
               <PricingTable />
             </div>
           </div>
         </div>
+        <Image
+            src="/images/Group 48.svg"
+            alt="bg"
+            width={250}
+            height={450}
+            // fill
+            className="object-contain absolute  pointer-events-none left-[4rem] bottom-0 opacity-60 -z-0"
+          />
       </section>
 
-      <section className="w-full flex justify-center item-center pt-[80px] lg:pt-[120px] pb-[80px] lg:pb-[120px]">
-        <div className="container rounded-2xl ">
+      <section className="w-full flex justify-center item-center pt-[80px] lg:pt-[120px] pb-[80px] lg:pb-[120px] relative">
+        <div className="container rounded-2xl relative">
           <div className=" py-12">
             <div className="w-full flex flex-col justify-center items-center mb-3 pb-8">
               <h2 className="text-[38px] text-white ">Our Valued Partners</h2>
@@ -249,6 +286,13 @@ export default function Home() {
                 />
 
                 <Image
+                  src="/images/partners/alchemy.png"
+                  alt="alchemy"
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                />
+                <Image
                   src="/images/partners/digioracle.svg"
                   alt="Digioracle"
                   width={200}
@@ -266,6 +310,22 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Image
+            src="/images/bq(1).svg"
+            alt="bg"
+            width={500}
+            height={450}
+            // fill
+            className="object-contain absolute  pointer-events-none right-0 bottom-0"
+          />
+          <Image
+            src="/images/bq(2).svg"
+            alt="bg"
+            width={500}
+            height={250}
+            // fill
+            className="object-contain absolute  pointer-events-none left-0 top-0"
+          />
       </section>
 
       <section className="w-full pt-[50px] lg:pt-[50px] pb-[80px] lg:pb-[120px]">
@@ -299,7 +359,7 @@ export default function Home() {
                         </h2>
 
                         <div className=" flex items-center justify-end text-[#FFCC29]">
-                          <Link href={'/'}>Read More</Link>
+                          <Link href={'/'} className='inline-flex items-center gap-3'>Read More <ArrowRightIcon2/></Link>
                         </div>
                       </div>
                     </div>

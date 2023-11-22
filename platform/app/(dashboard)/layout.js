@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 
