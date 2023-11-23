@@ -33,14 +33,14 @@ const Report = () => {
             </div>
           </div>
         </div>
-        <div className='h-42 w-44 '>
+        <div className='h-32 w-full flex items-center justify-center -mt-20'>
           <Image
             src="/images/bq(3).svg"
             alt="bg"
-            // width={600}
-            // height={250}
-            fill 
-            className="object-center object-contain  pointer-events-none max-w-3xl mx-auto mt-20 "
+            width={200}
+            height={250}
+            // fill 
+            className="object-center object-contain  pointer-events-none max-w-3xl mx-auto w-full -z-0  "
           />
         </div>
         
