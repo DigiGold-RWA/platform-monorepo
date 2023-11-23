@@ -2,8 +2,9 @@ const { ethers, upgrades } = require("hardhat");
 
 async function main() {
     // Deploying
-    const SimpleVault = await ethers.getContractFactory("SimpleVault");
-    const instance = await upgrades.deployProxy(SimpleVault, []);
+    const DigiGoldExchange =
+        await ethers.getContractFactory("DigiGoldExchange");
+    const instance = await upgrades.deployProxy(DigiGoldExchange, []);
     await instance.waitForDeployment();
 
     // Upgrading

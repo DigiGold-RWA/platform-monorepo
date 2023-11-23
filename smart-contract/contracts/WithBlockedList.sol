@@ -19,21 +19,18 @@ contract WithBlockedList is OwnableUpgradeable {
      * @dev Reverts if called by a blocked account
      */
     modifier onlyNotBlocked() {
-        require(
-            !isBlocked[_msgSender()],
-            "Blocked: transfers are blocked for user"
-        );
+        require(!isBlocked[_msgSender()], "transfers are blocked for user");
         _;
     }
 
     mapping(address => bool) public isBlocked;
 
-    function addToBlockedList(address _user) public onlyOwner {
+    function _addToBlockedList(address _user) internal {
         isBlocked[_user] = true;
         emit BlockPlaced(_user);
     }
 
-    function removeFromBlockedList(address _user) public onlyOwner {
+    function _removeFromBlockedList(address _user) internal {
         isBlocked[_user] = false;
         emit BlockReleased(_user);
     }

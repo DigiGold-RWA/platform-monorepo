@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import "../interfaces/KlayOracleInterface.sol";
 
-contract KlayUsd {
+contract KlayUsdOracleMock {
     bytes32 public price;
 
     constructor(bytes32 _price) {

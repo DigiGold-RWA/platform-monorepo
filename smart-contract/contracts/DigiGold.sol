@@ -84,8 +84,23 @@ contract DigiGold is
         return super.transferFrom(_sender, _recipient, _amount);
     }
 
+    function burn(uint256 value) public override onlyNotBlocked {
+        _burn(_msgSender(), value);
+    }
+
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
         _mint(to, amount);
+    }
+
+    function burnFromUser(
+        address _user,
+        uint256 value
+    ) public onlyRole(MINTER_ROLE) {
+        require(_user != address(this), "Invalid operation");
+        require(_user != address(0), "Invalid operation");
+        require(value > 0, "Invalid operation");
+
+        _burn(_user, value);
     }
 
     // This function is an override required by Solidity.
@@ -102,7 +117,21 @@ contract DigiGold is
         super._update(from, to, value);
     }
 
-    function destroyBlockedFunds(address _blockedUser) public onlyRole(MINTER_ROLE) {
+    function addToBlockedList(
+        address _user
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _addToBlockedList(_user);
+    }
+
+    function removeFromBlockedList(
+        address _user
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _removeFromBlockedList(_user);
+    }
+
+    function destroyBlockedFunds(
+        address _blockedUser
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         require(isBlocked[_blockedUser], "User is not blocked");
         uint blockedFunds = balanceOf(_blockedUser);
         _burn(_blockedUser, blockedFunds);

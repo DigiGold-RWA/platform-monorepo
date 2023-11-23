@@ -4,12 +4,16 @@ require("dotenv").config();
 async function main(d) {
     // Deploying
     const DigiGold = await ethers.getContractFactory("DigiGold");
-    const instance = await upgrades.deployProxy(DigiGold, [
-        process.env.DEPLOYER_WALLET_ADDRESS,
-        process.env.DEPLOYER_WALLET_ADDRESS,
-        process.env.DEPLOYER_WALLET_ADDRESS,
-        process.env.DEPLOYER_WALLET_ADDRESS,
-    ]);
+    const instance = await upgrades.deployProxy(
+        DigiGold,
+        [
+            process.env.DEPLOYER_WALLET_ADDRESS,
+            process.env.DEPLOYER_WALLET_ADDRESS,
+            process.env.DEPLOYER_WALLET_ADDRESS,
+            process.env.DEPLOYER_WALLET_ADDRESS,
+        ],
+        { initializer: "initialize", kind: "uups" }
+    );
     await instance.waitForDeployment();
 
     // Upgrading
