@@ -54,7 +54,7 @@ export const Services = [
         text: "You can use your $DGOLD as collateral to borrow stablecoins for up to 80% of your $DGOLD value.",
     },
     {
-        title: "Spend Anywhere with your $DGOLD Backed Debit Card",
+        title: "$DGOLD Backed Virtual/Physical Debit Card",
         text: "We issue both virtual/physical Master debit card that you can use to spend your $DGOLD anywhere in the world.",
     },
 ];
