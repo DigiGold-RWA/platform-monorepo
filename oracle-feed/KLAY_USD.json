@@ -1,0 +1,37 @@
+{
+    "active": true,
+    "name": "KLAY_USD",
+    "adapterId": "0x7016c733c995ca868e6bc6e552be732fa005e5967e821f6a563b5f0cd8841297",
+    "oracleAddress": "0x5f1D26EBe62f16168C0253a8CA493708BEb94e7a",
+    "feeds": [
+        {
+            "url": "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=KLAY&tsyms=USD",
+            "request_type": 0,
+            "headers": [
+                {
+                    "field": {
+                        "Content-Type": "application/json"
+                    }
+                },
+                {
+                    "field": {
+                        "Authorization": "Apikey ${CRYPTO_COMPARE_KEY}"
+                    }
+                }
+            ],
+            "reducers": [
+                {
+                    "function": "PARSE",
+                    "args": ["$.RAW.KLAY.USD.PRICE"]
+                },
+                {
+                    "function": "FLOAT64_MUL_UINT64",
+                    "args": ["1000000000"]
+                }
+            ],
+            "payload": ""
+        }
+    ],
+    "category": 2,
+    "frequency": "3600000000000"
+}
