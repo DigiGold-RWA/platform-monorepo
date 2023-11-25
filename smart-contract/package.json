@@ -1,6 +1,7 @@
 {
     "name": "hardhat-project",
     "scripts": {
+        "test:coverage": "npx hardhat coverage --network ${NETWORK:-hardhat} --solcoverjs .solcover.js",
         "test:token": "REPORT_GAS=true npx hardhat test --network ${NETWORK:-hardhat} test/digigold.js",
         "test:exchange": "REPORT_GAS=true npx hardhat test --network ${NETWORK:-hardhat} test/digigold-exchange.js",
         "compile:all": "npx hardhat compile",
