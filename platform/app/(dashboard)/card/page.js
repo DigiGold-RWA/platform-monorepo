@@ -37,8 +37,13 @@ const GoldCard = () => {
   return (
     <>
       <div>
-        <div className="mb-4">
+        <div className="mb-4 flex items-center justify-start gap-4">
           <PageTitle title={'Gold Card'} />
+
+          <p className="border-[0.5px] border-[#8BFFC9] rounded-2xl px-2 py-1 text-[#8BFFC9] text-xs inline-block">
+            <span className="h-2 w-2 rounded-full  bg-[#8BFFC9] inline-block mr-2"></span>
+            Coming soon
+          </p>
         </div>
 
         <div className="w-full  rounded-2xl pb-12 mb-5">
@@ -90,15 +95,24 @@ const GoldCard = () => {
                   </div>
 
                   <div className="flex gap-2 items-end justify-between w-full">
-                    <h2 className='text-base font-semibold opacity-50 flex-1 whitespace-nowrap'>Tony Matthew</h2>
+                    <h2 className="text-base font-semibold opacity-50 flex-1 whitespace-nowrap">
+                      Tony Matthew
+                    </h2>
                     <div className="flex flex-col gap-1 items-end justify-end">
-                      <h3 className="text-sm font-bold whitespace-nowrap opacity-50">**** *** **** 1234</h3>
+                      <h3 className="text-sm font-bold whitespace-nowrap opacity-50">
+                        **** *** **** 1234
+                      </h3>
 
                       <div>
-                        <span className='opacity-50 text-[6.43px] leading-[6.43px] text-right flex items-center justify-end mb-1'>Month/Year</span>
+                        <span className="opacity-50 text-[6.43px] leading-[6.43px] text-right flex items-center justify-end mb-1">
+                          Month/Year
+                        </span>
                         <div className="text-sm flex items-center gap-2">
-                          <span  className='opacity-50 text-[6.43px] leading-[6.43px]'>VALID <br/>THRU</span>
-                          <p className='text-[12.87px] leading-[15.69px]'>
+                          <span className="opacity-50 text-[6.43px] leading-[6.43px]">
+                            VALID <br />
+                            THRU
+                          </span>
+                          <p className="text-[12.87px] leading-[15.69px]">
                             <span>03/20</span>
                           </p>
                         </div>
