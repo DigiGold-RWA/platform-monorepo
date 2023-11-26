@@ -14,19 +14,19 @@ export default function Home() {
     const [currentRange, setCurrentRange] = useState("all");
     const DateRanges = [
         {
-            title: "Year to date",
+            title: "YTD",
             perc: "+10.00%",
             value: "ytd",
             id: "1",
         },
         {
-            title: "1 Year",
+            title: "1 Yr",
             perc: "+20.69%",
             value: "12m",
             id: "2",
         },
         {
-            title: "5 years",
+            title: "5 Yrs",
             perc: "+62.87%",
             value: "60m",
             id: "3",
@@ -52,7 +52,7 @@ export default function Home() {
                         </h1>
                         <p>
                             Experience the future of Gold ownership. Securely
-                            own as little as 1g ($64)Tokenized Gold backed by
+                            own as little as 1g(~$64) Tokenized Gold backed by
                             99.9% of pure Gold vaulted in Dubai without any
                             associated risk.
                         </p>
@@ -101,8 +101,8 @@ export default function Home() {
                     <div className=" w-full h-full flex items-center justify-center text-white max-w-2xl mx-auto ">
                         <div className="card p-[2rem] text-center space-y-5">
                             <p className="text-base">
-                                Our tokenized gold is minted s $DGoldtoken. With
-                                1 $DGold representing 1g of gold
+                                Our tokenized gold is minted as $DGOLD. With 1
+                                $DGOLD representing 1g of gold.
                             </p>
                             <div className="items-center justify-center flex flex-col">
                                 <h1 className="text-6xl font-bold leading-snug text-[#FFCC29]">

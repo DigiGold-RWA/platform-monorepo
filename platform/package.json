@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/sequelize-adapter": "^1.0.5",
+    "@auth0/nextjs-auth0": "^3.3.0",
     "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
@@ -20,7 +21,6 @@
     "@transak/transak-sdk": "^2.0.0",
     "@vercel/analytics": "^1.1.1",
     "@videojs/themes": "^1.0.1",
-    "algosdk": "^2.7.0",
     "antd": "^5.10.3",
     "apexcharts": "^3.44.0",
     "axios": "^1.6.1",
