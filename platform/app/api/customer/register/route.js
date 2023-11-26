@@ -2,9 +2,9 @@ import { NextResponse } from "next/server.js";
 import { User } from "../../db/models/all.js";
 
 export async function POST(request) {
-    const { user } = await request.json();
+    const data = await request.json();
 
-    console.log("New User", user);
+    console.log("New User", data);
 
     // const exist = await User.findOne({
     //     where: {
