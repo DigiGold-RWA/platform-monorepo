@@ -4,7 +4,6 @@ import React, { useEffect, useRef, memo } from 'react';
 function HomeChart({range}) {
   const container = useRef();
 
-  console.log(range, 'range111');
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -12,7 +11,6 @@ function HomeChart({range}) {
       'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
     script.type = 'text/javascript';
     script.async = true;
-    console.log(range, 'range');
     script.innerHTML = `
         {
           "symbols": [

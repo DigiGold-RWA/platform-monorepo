@@ -14,6 +14,17 @@ import Image from "next/image";
 import { EyeIcon } from "@/app/components/IconComponent";
 import DepositModal from "@/app/components/Modals/DepositModal";
 import { user } from "@/public/data";
+import Notification from "@/app/components/Notification";
+import CardComponent from "@/app/components/PageLayout/CardComponent";
+import MainComponent from "@/app/components/PageLayout/MainComponent";
+import { PageTitle } from "@/app/components/PageLayout/PageTitle";
+import TransactionsTable from "@/app/components/DataTable/TransactionsTable";
+import axios from "axios";
+import Image from "next/image";
+import { EyeIcon } from "@/app/components/IconComponent";
+import DepositModal from "@/app/components/Modals/DepositModal";
+import { user } from "@/public/data";
+import WithdrawModal from "@/app/components/Modals/WithdrawModal";
 
 const Dashboard = () => {
     const [usdcBalance, setUsdcBalance] = useState(0.0);
@@ -84,7 +95,7 @@ const Dashboard = () => {
                                 <button
                                     className="flex border border-[#FFCC29] px-6 py-3 rounded-lg text-[#FFCC29] text-sm"
                                     ref={withdrawBtnRef}
-                                    // onClick={onWithdrawOpen}
+                                    onClick={onWithdrawOpen}
                                 >
                                     <MoneySend
                                         size="20"
@@ -227,11 +238,10 @@ const Dashboard = () => {
                             </MainComponent>
                         </div>
                     </div>
-                    {/* </Suspense> */}
                 </>
             )}
 
-            {user && user.fireblock_vault_id && (
+            {user && (
                 <>
                     <DepositModal
                         isOpen={depositIsOpen}
@@ -239,10 +249,15 @@ const Dashboard = () => {
                         btnRef={depositBtnRef}
                         user={user}
                     />
+
+                    <WithdrawModal
+                        isOpen={withdrawIsOpen}
+                        onClose={onWithdrawClose}
+                        btnRef={withdrawBtnRef}
+                        user={user}
+                    />
                 </>
             )}
         </>
     );
 };
-
-export default Dashboard;

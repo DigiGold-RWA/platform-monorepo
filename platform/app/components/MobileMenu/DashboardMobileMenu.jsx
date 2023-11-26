@@ -8,7 +8,7 @@ import { RecordCircle, Profile } from 'iconsax-react';
 import Image from 'next/image';
 import { Category } from 'react-iconly';
 import { LogoutIcon } from '../IconComponent';
-// import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { DashboardMenuContext } from '@/app/utils/dashboardContext';
 import { menuLinks } from '@/app/lib/constants';
 
@@ -76,14 +76,17 @@ const DashboardMobileMenu = () => {
                   </span>
                 </Link>
               ))}
-              {/* <button
-                  className={`menu-item w-full font-thin text-[#737070] flex items-center py-3 px-5  my-2 transition-colors duration-200 ease-in hover:bg-[#EAFCFC] hover:text-[#008080] justify-start text-sm hover:border-[#008080]`}
+              <button
+                  className={`menu-item w-full font-thin  flex items-center py-3 px-5  my-2 transition-colors duration-200 ease-in hover:bg-[#7B6941] hover:text-white  justify-start text-sm hover:border-[#008080] text-white  border-transparent`}
+                  onClick={() => {
+                    e.preventDefault();
+                    signOut();
+                  }}
                 >
-                  <span className="text-left px-3">ic</span>
                   <span className={classNames('mx-2 text-sm font-normal ')}>
                     Sign Out
                   </span>
-                </button> */}
+                </button>
             </div>
           </nav>
         </div>

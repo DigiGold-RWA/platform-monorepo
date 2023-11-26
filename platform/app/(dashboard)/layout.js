@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+// import Sidebar from "../components/Sidebar";
+import Navbar from "../components/DashboardNavbar";
 import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
