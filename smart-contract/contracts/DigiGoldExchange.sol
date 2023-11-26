@@ -9,7 +9,8 @@ import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol
 import "@openzeppelin/contracts/utils/math/Math.sol";
 
 import "./interfaces/KlayOracleInterface.sol";
-import "hardhat/console.sol";
+
+// import "hardhat/console.sol";
 
 contract DigiGoldExchange is
     Initializable,
@@ -98,18 +99,18 @@ contract DigiGoldExchange is
         minimumExchange = _minimumExchange;
     }
 
-    function updateKlayUsdPrice(uint256 _price) public {
+    //@dev called by the oracle contract
+    function updateKlayUsdPrice(uint256 _price) external {
+        require(msg.sender == klayUsdOracleAddress, "Invalid caller");
         klayUsdPrice = _price;
-
-        console.log("updating klay price...", _price);
 
         emit KlayUsdPriceUpdated(_price);
     }
 
-    function updateGoldUsdPrice(uint256 _price) public {
+    //@dev called by the oracle contract
+    function updateGoldUsdPrice(uint256 _price) external {
+        require(msg.sender == goldUsdOracleAddress, "Invalid caller");
         goldUsdPrice = _price;
-
-        console.log("updating gold price...", _price);
 
         emit GoldUsdPriceUpdated(_price);
     }
@@ -117,14 +118,14 @@ contract DigiGoldExchange is
     function updateGoldUsdOracleAddress(
         address _oracleAddress
     ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(_oracleAddress != address(0), "Invalid address");
+        require(_oracleAddress != address(0), "Invalid oracle");
         goldUsdOracleAddress = _oracleAddress;
     }
 
     function updateKlayUsdOracleAddress(
         address _oracleAddress
     ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(_oracleAddress != address(0), "Invalid address");
+        require(_oracleAddress != address(0), "Invalid oracle");
         klayUsdOracleAddress = _oracleAddress;
     }
 
@@ -142,27 +143,34 @@ contract DigiGoldExchange is
     function _exchangeUSDCforDGOLD(
         uint256 amount
     ) internal nonReentrant returns (bool) {
-        require(amount > minimumExchange, "Invalid amount");
+        (, uint256 goldOut, uint256 feeOut) = calculateGoldOutAndFee(amount);
 
-        uint256 goldAmount = _calculateGoldAmount(amount);
-        uint256 mintingFee = calculateMintFees(amount);
+        IERC20(dGoldTokenAddress).transfer(msg.sender, goldOut);
 
-        (bool overflowErr, uint256 goldBalAfterFee) = Math.trySub(
-            goldAmount,
+        IERC20(dGoldTokenAddress).transfer(feeRecipient, feeOut);
+
+        return true;
+    }
+
+    function calculateGoldOutAndFee(
+        uint256 _amountIn
+    )
+        public
+        view
+        returns (uint256 goldOutBeforeFee, uint256 goldOut, uint256 feeOut)
+    {
+        uint256 amountOfGold = _calculateGoldAmount(_amountIn);
+        uint256 mintingFee = calculateMintFees(_amountIn);
+
+        (bool overflowFlag, uint256 goldBalAfterFee) = Math.trySub(
+            amountOfGold,
             mintingFee
         );
 
-        if (!overflowErr) {
-            IERC20(dGoldTokenAddress).transfer(
-                msg.sender,
-                goldBalAfterFee * 1e9
-            );
-
-            IERC20(dGoldTokenAddress).transfer(feeRecipient, mintingFee * 1e9);
-
-            return true;
+        if (overflowFlag) {
+            return (amountOfGold, goldBalAfterFee, mintingFee);
         } else {
-            revert("Overflow error");
+            revert("GoldOut: Overflow error");
         }
     }
 
@@ -171,8 +179,8 @@ contract DigiGoldExchange is
     ) internal view returns (uint256) {
         uint256 amountOfGold = Math.mulDiv(
             klayAmount,
-            klayUsdPrice,
-            goldUsdPrice,
+            klayUsdPrice * 1 gwei,
+            goldUsdPrice * 1 gwei,
             Math.Rounding.Floor
         );
 
@@ -182,20 +190,30 @@ contract DigiGoldExchange is
     function calculateMintFees(
         uint256 klayAmount
     ) public view returns (uint256) {
-        (, uint256 amountInUsd) = Math.tryMul(klayAmount, klayUsdPrice);
+        (bool overflowFlag, uint256 amountInUsd) = Math.tryMul(
+            klayAmount,
+            klayUsdPrice * 1 gwei
+        );
+
+        if (overflowFlag == false) {
+            revert("MintFees: Overflow error");
+        }
+
         uint256 amountOfGold = _calculateGoldAmount(klayAmount);
 
         uint256 fee = 0;
 
-        if (amountInUsd < 500) {
+        amountInUsd = amountInUsd / 1e18; //Return back to base 1e18
+
+        if (amountInUsd < 500 ether) {
             fee = mintFees[500];
-        } else if (amountInUsd < 2000) {
+        } else if (amountInUsd < 2000 ether) {
             fee = mintFees[2000];
-        } else if (amountInUsd < 10000) {
-            fee = mintFees[10000];
-        } else if (amountInUsd < 50000) {
+        } else if (amountInUsd < 10000 ether) {
+            fee = mintFees[10000 ether];
+        } else if (amountInUsd < 50000 ether) {
             fee = mintFees[50000];
-        } else if (amountInUsd < 1000000) {
+        } else if (amountInUsd < 1000000 ether) {
             fee = mintFees[1000000];
         } else {
             fee = mintFees[1000000];
@@ -228,10 +246,11 @@ contract DigiGoldExchange is
 
     /**
      * @dev Fallback function allowing to perform swap from $KLAY to $DGOLD.
+     * Try not to exceed gas available ...
      */
     // solhint-disable no-complex-fallback
     fallback() external payable {
-        require(msg.value > minimumExchange, "Invalid amount");
+        require(msg.value >= minimumExchange, "Invalid amount");
         _exchangeUSDCforDGOLD(msg.value);
     }
 

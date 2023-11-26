@@ -1,0 +1,37 @@
+{
+    "active": true,
+    "name": "1g_GOLD_USD",
+    "adapterId": "0x2a1ab60eb466eacf183d470ff53a077d6cb39e0e2f0a4e22c377c6396a89fa14",
+    "oracleAddress": "0xF9f03659aA419D11280e2fDa2dF875589432608F",
+    "feeds": [
+        {
+            "url": "https://www.goldapi.io/api/XAU/USD",
+            "request_type": 0,
+            "headers": [
+                {
+                    "field": {
+                        "Content-Type": "application/json"
+                    }
+                },
+                {
+                    "field": {
+                        "x-access-token": "${GOLD_API_KEY}"
+                    }
+                }
+            ],
+            "reducers": [
+                {
+                    "function": "PARSE",
+                    "args": ["$.price_gram_24k"]
+                },
+                {
+                    "function": "FLOAT64_MUL_UINT64",
+                    "args": ["1000000000"]
+                }
+            ],
+            "payload": ""
+        }
+    ],
+    "category": 2,
+    "frequency": "28800000000000"
+}

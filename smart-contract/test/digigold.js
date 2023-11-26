@@ -22,6 +22,18 @@ describe("DigiGold Token", function () {
     }
 
     describe("Token", function () {
+        it.skip("Should have necceary roles", async function () {
+            const { token, admin, minter, user } =
+                await loadFixture(deployTokenFixture);
+
+            expect(
+                await token.hasRole(
+                    ethers.keccak256(ethers.toUtf8Bytes("DEFAULT_ADMIN_ROLE")),
+                    admin.address
+                )
+            ).to.true;
+        });
+
         it("Should allow minter to mint", async function () {
             const { token, user, minter } =
                 await loadFixture(deployTokenFixture);

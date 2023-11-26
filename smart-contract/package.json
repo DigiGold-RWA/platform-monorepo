@@ -1,11 +1,13 @@
 {
     "name": "hardhat-project",
     "scripts": {
+        "fund:exchange": "npx hardhat run --network ${NETWORK:-hardhat} scripts/fund-exchange.js",
+        "test:coverage": "npx hardhat coverage --network ${NETWORK:-hardhat} --solcoverjs .solcover.js",
         "test:token": "REPORT_GAS=true npx hardhat test --network ${NETWORK:-hardhat} test/digigold.js",
         "test:exchange": "REPORT_GAS=true npx hardhat test --network ${NETWORK:-hardhat} test/digigold-exchange.js",
         "compile:all": "npx hardhat compile",
         "deploy:token": "npx hardhat run --network ${NETWORK:-hardhat} scripts/deploy-digigold.js",
-        "deploy:exchange": "npx hardhat run --network ${NETWORK} scripts/deploy-exchnage.js",
+        "deploy:exchange": "npx hardhat run --network ${NETWORK} scripts/deploy-exchange.js",
         "prettier:dryrun": "prettier ./contracts/**/*.sol test/**/*.js ./scripts/**/*.js",
         "prettier:write": "prettier --write ./contracts/**/*.sol test/**/*.js ./scripts/**/*.js --config ./prettierrc.json",
         "lint:sol": "solhint contracts/**/*.sol -f table contracts/*.sol",
