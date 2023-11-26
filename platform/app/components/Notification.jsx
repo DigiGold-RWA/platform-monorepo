@@ -59,7 +59,7 @@ export default function Notification() {
                             <p className="text-white inline-flex">
                                 Kindly complete the KYC verification in order to
                                 gain full access to the DigiGold platform
-                                <Link
+                                {/* <Link
                                     href="#"
                                     target="_blank"
                                     className="ml-1 font-semibold flex items-center gap-2"
@@ -68,7 +68,7 @@ export default function Notification() {
                                     <span>
                                         <ArrowRightIcon />
                                     </span>
-                                </Link>
+                                </Link> */}
                             </p>
                         )}
                     </div>

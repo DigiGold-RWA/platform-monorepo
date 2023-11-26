@@ -14,16 +14,6 @@ import Image from "next/image";
 import { EyeIcon } from "@/app/components/IconComponent";
 import DepositModal from "@/app/components/Modals/DepositModal";
 import { user } from "@/public/data";
-import Notification from "@/app/components/Notification";
-import CardComponent from "@/app/components/PageLayout/CardComponent";
-import MainComponent from "@/app/components/PageLayout/MainComponent";
-import { PageTitle } from "@/app/components/PageLayout/PageTitle";
-import TransactionsTable from "@/app/components/DataTable/TransactionsTable";
-import axios from "axios";
-import Image from "next/image";
-import { EyeIcon } from "@/app/components/IconComponent";
-import DepositModal from "@/app/components/Modals/DepositModal";
-import { user } from "@/public/data";
 import WithdrawModal from "@/app/components/Modals/WithdrawModal";
 
 const Dashboard = () => {
@@ -261,3 +251,5 @@ const Dashboard = () => {
         </>
     );
 };
+
+export default Dashboard;
