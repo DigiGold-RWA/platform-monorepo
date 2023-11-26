@@ -631,7 +631,7 @@ const CopyIcon = () => {
   );
 };
 
-const CalendarIcon = ({size}) => {
+const CalendarIcon = ({ size }) => {
   return (
     <>
       <svg
@@ -679,7 +679,249 @@ const CalendarIcon = ({size}) => {
   );
 };
 
+const AddCircle = ({ size }) => {
+  return (
+    <>
+      <svg
+        width={`${size ? size : '32'}`}
+        height={`${size ? size : '32'}`}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.9998 29.3334C23.3332 29.3334 29.3332 23.3334 29.3332 16.0001C29.3332 8.66675 23.3332 2.66675 15.9998 2.66675C8.6665 2.66675 2.6665 8.66675 2.6665 16.0001C2.6665 23.3334 8.6665 29.3334 15.9998 29.3334Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10.6665 16H21.3332"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16 21.3334V10.6667"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+const SendSquare = ({ size }) => {
+  return (
+    <>
+      <svg
+        width={`${size ? size : '32'}`}
+        height={`${size ? size : '32'}`}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.9998 29.3334H19.9998C26.6665 29.3334 29.3332 26.6667 29.3332 20.0001V12.0001C29.3332 5.33341 26.6665 2.66675 19.9998 2.66675H11.9998C5.33317 2.66675 2.6665 5.33341 2.6665 12.0001V20.0001C2.6665 26.6667 5.33317 29.3334 11.9998 29.3334Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M14.1196 10.24H19.773V15.9067"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M19.7732 10.24L12.2266 17.7867"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8 22.0134C13.1867 23.7468 18.8133 23.7468 24 22.0134"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+const InfoCircle = ({ size }) => {
+  return (
+    <>
+      <svg
+        width={`${size ? size : '32'}`}
+        height={`${size ? size : '32'}`}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.9998 29.3334C23.3332 29.3334 29.3332 23.3334 29.3332 16.0001C29.3332 8.66675 23.3332 2.66675 15.9998 2.66675C8.6665 2.66675 2.6665 8.66675 2.6665 16.0001C2.6665 23.3334 8.6665 29.3334 15.9998 29.3334Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16 10.6667V17.3334"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15.9927 21.3333H16.0047"
+          stroke="#FFCC29"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+const SettingIcon = ({ size }) => {
+  return (
+    <>
+      <svg
+        width={`${size ? size : '32'}`}
+        height={`${size ? size : '32'}`}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.9998 29.3334H19.9998C26.6665 29.3334 29.3332 26.6667 29.3332 20.0001V12.0001C29.3332 5.33341 26.6665 2.66675 19.9998 2.66675H11.9998C5.33317 2.66675 2.6665 5.33341 2.6665 12.0001V20.0001C2.6665 26.6667 5.33317 29.3334 11.9998 29.3334Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M20.7603 24.6661V19.4661"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M20.7603 9.93325V7.33325"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M20.7596 16.8669C22.6742 16.8669 24.2263 15.3148 24.2263 13.4003C24.2263 11.4857 22.6742 9.93359 20.7596 9.93359C18.845 9.93359 17.293 11.4857 17.293 13.4003C17.293 15.3148 18.845 16.8669 20.7596 16.8669Z"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.2397 24.6664V22.0664"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.2397 12.5333V7.33325"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.2401 22.0661C13.1547 22.0661 14.7068 20.5141 14.7068 18.5995C14.7068 16.6849 13.1547 15.1328 11.2401 15.1328C9.32552 15.1328 7.77344 16.6849 7.77344 18.5995C7.77344 20.5141 9.32552 22.0661 11.2401 22.0661Z"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+const PlayCircle = () => {
+  return (
+    <>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+          stroke="#FFCC29"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10 9.86852C10 9.06982 10.8901 8.59343 11.5547 9.03647L14.7519 11.1679C15.3457 11.5638 15.3457 12.4362 14.7519 12.8321L11.5547 14.9635C10.8901 15.4066 10 14.9302 10 14.1315V9.86852Z"
+          fill="#FFCC29"
+          stroke="#FFCC29"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+const Check = () => {
+  return (
+    <>
+      <svg
+        width="14"
+        height="10"
+        viewBox="0 0 14 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.0832 1.18408L4.74984 8.51742L1.4165 5.18408"
+          stroke="#8BFFC9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
 export {
+  Check,
+  PlayCircle,
+  AddCircle,
+  SettingIcon,
+  InfoCircle,
+  SendSquare,
   CalendarIcon,
   MapIcon,
   EyeIcon,

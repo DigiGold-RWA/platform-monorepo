@@ -8,11 +8,11 @@ import { RecordCircle, Profile, Global } from 'iconsax-react';
 import Image from 'next/image';
 import { Category } from 'react-iconly';
 import { LogoutIcon } from './IconComponent';
-// import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { menuLinks } from '../lib/constants';
 import '../navbar.css';
 
-const Navbar = () => {
+const DashboardNavbar = () => {
   const contextValue = useContext(DashboardMenuContext) || {};
   const { toggleDashMenu, showDashMenu } = contextValue;
   const pathname = usePathname();
@@ -77,7 +77,7 @@ const Navbar = () => {
                   Dashboard
                 </Link> */}
               </div>
-              <div className="lg:flex lg:items-center lg:w-auto">
+              <div className="lg:flex lg:items-center lg:w-auto gap-2">
                 <div className="flex items-center bg-card-background">
                   <Global color="#ffffff" size={22} />
                   <select
@@ -92,6 +92,18 @@ const Navbar = () => {
                     <option value={5}>Español</option>
                   </select>
                 </div>
+
+                <button
+                  className={`menu-item font-thin  text-white border-transparent  items-center py-2 px-4  transition-colors duration-200 ease-in hover:bg-[#FFCC29] hover:text-[#1B1B1B] justify-start text-sm hover:border-[#008080]`}
+                  onClick={() => {
+                    e.preventDefault();
+                    signOut();
+                  }}
+                >
+                  <span className={classNames('mx-2 text-sm font-normal ')}>
+                    Sign Out
+                  </span>
+                </button>
               </div>
             </div>
           </nav>
@@ -101,4 +113,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;

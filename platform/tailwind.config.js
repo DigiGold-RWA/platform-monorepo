@@ -14,6 +14,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        mont: ['var(--font-mont)'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -56,6 +59,8 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
           background: 'var(--card-background)',
+          goldBorder: 'var(--gold-card-border)',
+          goldBackground: 'var(--gold-card-background)',
         },
       },
       // borderRadius: {

@@ -27,6 +27,7 @@ import Image from 'next/image';
 import { EyeIcon } from '@/app/components/IconComponent';
 import DepositModal from '@/app/components/Modals/DepositModal';
 import { user } from '@/public/data';
+import WithdrawModal from '@/app/components/Modals/WithdrawModal';
 // import { transactionHistory } from '@/public/data';
 
 const Dashboard = () => {
@@ -100,7 +101,7 @@ const Dashboard = () => {
                 <button
                   className="flex border border-[#FFCC29] px-6 py-3 rounded-lg text-[#FFCC29] text-sm"
                   ref={withdrawBtnRef}
-                  // onClick={onWithdrawOpen}
+                  onClick={onWithdrawOpen}
                 >
                   <MoneySend size="20" color="#FFCC29" className="mr-1" />
                   Send $DGold{' '}
@@ -220,6 +221,13 @@ const Dashboard = () => {
             isOpen={depositIsOpen}
             onClose={onDepositClose}
             btnRef={depositBtnRef}
+            user={user}
+          />
+
+          <WithdrawModal
+            isOpen={withdrawIsOpen}
+            onClose={onWithdrawClose}
+            btnRef={withdrawBtnRef}
             user={user}
           />
         </>

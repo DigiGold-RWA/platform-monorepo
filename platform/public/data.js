@@ -11,118 +11,62 @@
 // ]
     
 export const transacData = [
-    {
-      expense_type: 1,
-      amount: "20.50",
-      activity: "Netflix Subscription",
-      date: "11-02-2023",
-      time: "4:50am",
-      status: 0,
-    },
-    {
-      expense_type: 0,
-      amount: "15.00",
-      activity: "Grocery Shopping",
-      date: "11-02-2023",
-      time: "2:30pm",
-      status: 0,
-    },
-    {
-      expense_type: 1,
-      amount: "10.99",
-      activity: "App Store Purchase",
-      date: "11-03-2023",
-      time: "10:15am",
-      status: 1,
-    },
-    {
-      expense_type: 0,
-      amount: "50.75",
-      activity: "Dinner at Restaurant",
-      date: "11-04-2023",
-      time: "7:00pm",
-      status: 0,
-    },
-    {
-      expense_type: 1,
-      amount: "5.00",
-      activity: "Mobile Top-up",
-      date: "11-05-2023",
-      time: "12:45pm",
-      status: 2,
-    },
-    {
-      expense_type: 0,
-      amount: "30.20",
-      activity: "Online Shopping",
-      date: "11-06-2023",
-      time: "3:20pm",
-      status: 0,
-    },
-    {
-      expense_type: 1,
-      amount: "8.99",
-      activity: "Digital Movie Rental",
-      date: "11-07-2023",
-      time: "6:30pm",
-      status: 0,
-    },
-    // {
-    //   expense_type: 0,
-    //   amount: "25.50",
-    //   activity: "Gas Refill",
-    //   date: "11-08-2023",
-    //   time: "9:10am",
-    //   status: 1,
-    // },
     // {
     //   expense_type: 1,
-    //   amount: "15.75",
-    //   activity: "Coffee Shop",
-    //   date: "11-09-2023",
-    //   time: "11:45am",
+    //   amount: "20.50",
+    //   activity: "Netflix Subscription",
+    //   date: "11-02-2023",
+    //   time: "4:50am",
     //   status: 0,
     // },
     // {
     //   expense_type: 0,
-    //   amount: "12.30",
-    //   activity: "Bookstore Purchase",
-    //   date: "11-10-2023",
-    //   time: "5:55pm",
+    //   amount: "15.00",
+    //   activity: "Grocery Shopping",
+    //   date: "11-02-2023",
+    //   time: "2:30pm",
+    //   status: 0,
+    // },
+    // {
+    //   expense_type: 1,
+    //   amount: "10.99",
+    //   activity: "App Store Purchase",
+    //   date: "11-03-2023",
+    //   time: "10:15am",
+    //   status: 1,
+    // },
+    // {
+    //   expense_type: 0,
+    //   amount: "50.75",
+    //   activity: "Dinner at Restaurant",
+    //   date: "11-04-2023",
+    //   time: "7:00pm",
+    //   status: 0,
+    // },
+    // {
+    //   expense_type: 1,
+    //   amount: "5.00",
+    //   activity: "Mobile Top-up",
+    //   date: "11-05-2023",
+    //   time: "12:45pm",
     //   status: 2,
     // },
     // {
     //   expense_type: 0,
-    //   amount: "12.30",
-    //   activity: "Bookstore Purchase",
-    //   date: "11-10-2023",
-    //   time: "5:55pm",
-    //   status: 2,
+    //   amount: "30.20",
+    //   activity: "Online Shopping",
+    //   date: "11-06-2023",
+    //   time: "3:20pm",
+    //   status: 0,
     // },
     // {
-    //   expense_type: 0,
-    //   amount: "12.30",
-    //   activity: "Bookstore Purchase",
-    //   date: "11-10-2023",
-    //   time: "5:55pm",
-    //   status: 2,
-    // },
-    // {
-    //   expense_type: 0,
-    //   amount: "12.30",
-    //   activity: "Bookstore Purchase",
-    //   date: "11-10-2023",
-    //   time: "5:55pm",
-    //   status: 2,
-    // },
-    // {
-    //   expense_type: 0,
-    //   amount: "12.30",
-    //   activity: "Bookstore Purchase",
-    //   date: "11-10-2023",
-    //   time: "5:55pm",
-    //   status: 2,
-    // },
+    //   expense_type: 1,
+    //   amount: "8.99",
+    //   activity: "Digital Movie Rental",
+    //   date: "11-07-2023",
+    //   time: "6:30pm",
+    //   status: 0,
+    // }
   ];
   
 
@@ -167,6 +111,13 @@ export const transactionHistory = [
         amount: "$600",
         status: "completed", // Use values (0 for in progress, 1 for completed)
     },
+];
+
+export const cardWithdrawalData = [
+    
+];
+export const cardRechargeData = [
+    
 ];
 
 export const user = {

@@ -1,6 +1,6 @@
 import React from "react";
 // import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/DashboardNavbar";
 import DashboardMobileMenu from "../components/MobileMenu/DashboardMobileMenu";
 
 export default async function layout({ children }) {

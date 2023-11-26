@@ -34,9 +34,53 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
+    --gold-card-border: linear-gradient(
+      110.65deg,
+      rgba(255, 255, 255, 0.5) 1.16%,
+      rgba(255, 255, 255, 0.115) 100%
+    );
+    --gold-card-box-shadow: 8.042518615722656px 9.651022911071777px
+      19.302045822143555px 0px rgba(0, 0, 0, 0.03);
+
+    --gold-card-background: linear-gradient(
+        114.49deg,
+        rgba(255, 255, 255, 0.33) -21.49%,
+        rgba(255, 255, 255, 0) 111.75%
+      ),
+      linear-gradient(
+        110.65deg,
+        rgba(255, 255, 255, 0.5) 1.16%,
+        rgba(255, 255, 255, 0.115) 100%
+      );
+
     --radius: 0.5rem;
   }
 }
+
+.gold_card {
+  box-shadow: 8.042518615722656px 9.651022911071777px 19.302045822143555px 0px
+    #00000008;
+  background: linear-gradient(
+      114.49deg,
+      rgba(255, 255, 255, 0.33) -21.49%,
+      rgba(255, 255, 255, 0) 111.75%
+    ),
+    linear-gradient(
+      110.65deg,
+      rgba(255, 255, 255, 0.5) 1.16%,
+      rgba(255, 255, 255, 0.115) 100%
+    );
+  border: 0.97px solid;
+
+  border-image-source: linear-gradient(
+    110.65deg,
+    rgba(255, 255, 255, 0.5) 1.16%,
+    rgba(255, 255, 255, 0.115) 100%
+  );
+  border-radius: 24.13px;
+}
+
+/* box-shadow: 8.042518615722656px 9.651022911071777px 19.302045822143555px 0px rgba(0, 0, 0, 0.03); */
 
 *,
 a {
@@ -177,6 +221,10 @@ body {
 .transaction_card::-webkit-scrollbar-track {
   background: #1b1b1b;
 }
+
+/* border: 0.97px solid; */
+
+/* border-color: ; */
 
 /* .transaction_card::-webkit-scrollbar-thumb:hover {
   background: #555;
