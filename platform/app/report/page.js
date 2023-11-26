@@ -59,7 +59,7 @@ const Report = () => {
                       </div>
                       <div className="space-y-2 flex-1">
                         <h2 className="card-title text-xl font-semibold">2023</h2>
-                        <div className='flex items-center justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
+                        <div className='flex items-center justify-start md:justify-between gap-2 flex-wrap text-base text-[#FFCC29]'> 
                           <p className="">Jan</p>
                           <p className="">Feb</p>
                           <p className="">Mar</p>
@@ -82,7 +82,7 @@ const Report = () => {
                       </div>
                       <div className="space-y-2 flex-1">
                         <h2 className="card-title text-xl font-semibold">2022</h2>
-                        <div className='flex items-center justify-between flex-wrap text-base text-[#FFCC29]'>
+                        <div className='flex items-center justify-start md:justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
                           <p className="">Jan</p>
                           <p className="">Feb</p>
                           <p className="">Mar</p>
@@ -105,7 +105,7 @@ const Report = () => {
                       </div>
                       <div className="space-y-2 flex-1">
                         <h2 className="card-title text-xl font-semibold">2021</h2>
-                        <div className='flex items-center justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
+                        <div className='flex items-center justify-start md:justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
                           <p className="">Jan</p>
                           <p className="">Feb</p>
                           <p className="">Mar</p>
@@ -128,7 +128,7 @@ const Report = () => {
                       </div>
                       <div className="space-y-2 flex-1">
                         <h2 className="card-title text-xl font-semibold">2020</h2>
-                        <div className='flex items-center justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
+                        <div className='flex items-center justify-start md:justify-between gap-2 flex-wrap text-base text-[#FFCC29]'>
                           <p className="">Jan</p>
                           <p className="">Feb</p>
                           <p className="">Mar</p>
