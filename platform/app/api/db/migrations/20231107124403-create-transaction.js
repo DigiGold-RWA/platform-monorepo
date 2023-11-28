@@ -4,15 +4,14 @@ const { DataTypes } = require("sequelize");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable("transactions", 
-        {
+        await queryInterface.createTable("transactions", {
             id: {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
             },
             type: {
-                type: DataTypes.ENUM("deposit", "withdrawal"),
+                type: DataTypes.ENUM("deposit", "withdrawal", "mint", "burn"),
             },
             crypto: {
                 type: DataTypes.ENUM("KLAY", "DGOLD"),

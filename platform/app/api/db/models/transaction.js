@@ -43,7 +43,7 @@ const initTransaction = (sequelize, DataTypes) => {
                     this.setDataValue(
                         "amount",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(4)
                             : 0
                     );
                 },
@@ -58,7 +58,7 @@ const initTransaction = (sequelize, DataTypes) => {
                     this.setDataValue(
                         "amount_usd",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(4)
                             : 0
                     );
                 },
@@ -68,13 +68,13 @@ const initTransaction = (sequelize, DataTypes) => {
                 defaultValue: 0,
                 get() {
                     const rawValue = this.getDataValue("platform_fee");
-                    return rawValue ? parseFloat(rawValue).toFixed(2) : "";
+                    return rawValue ? parseFloat(rawValue).toFixed(5) : "";
                 },
                 set(value) {
                     this.setDataValue(
                         "platform_fee",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(5)
                             : 0
                     );
                 },
@@ -84,13 +84,13 @@ const initTransaction = (sequelize, DataTypes) => {
                 defaultValue: 0,
                 get() {
                     const rawValue = this.getDataValue("platform_fee_usd");
-                    return rawValue ? parseFloat(rawValue).toFixed(2) : "";
+                    return rawValue ? parseFloat(rawValue).toFixed(5) : "";
                 },
                 set(value) {
                     this.setDataValue(
                         "platform_fee_usd",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(5)
                             : 0
                     );
                 },
@@ -100,13 +100,13 @@ const initTransaction = (sequelize, DataTypes) => {
                 defaultValue: 0,
                 get() {
                     const rawValue = this.getDataValue("network_fee");
-                    return rawValue ? parseFloat(rawValue).toFixed(2) : "";
+                    return rawValue ? parseFloat(rawValue).toFixed(5) : "";
                 },
                 set(value) {
                     this.setDataValue(
                         "network_fee",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(5)
                             : 0
                     );
                 },
@@ -116,13 +116,13 @@ const initTransaction = (sequelize, DataTypes) => {
                 defaultValue: 0,
                 get() {
                     const rawValue = this.getDataValue("network_fee_usd");
-                    return rawValue ? parseFloat(rawValue).toFixed(2) : "";
+                    return rawValue ? parseFloat(rawValue).toFixed(5) : "";
                 },
                 set(value) {
                     this.setDataValue(
                         "network_fee_usd",
                         !isNaN(parseFloat(value))
-                            ? parseFloat(value).toFixed(2)
+                            ? parseFloat(value).toFixed(5)
                             : 0
                     );
                 },

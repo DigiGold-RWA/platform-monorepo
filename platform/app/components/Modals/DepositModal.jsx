@@ -19,9 +19,7 @@ import Image from "next/image";
 import { Wallet } from "iconsax-react";
 
 const DepositCrypto = ({ user }) => {
-    console.log(user);
     const walletAddress = user?.wallets?.[1].public_address;
-    // console.log(walletProfile);
     const [depositCheck, setdepositCheck] = useState(true);
     return (
         <>
@@ -57,6 +55,9 @@ const DepositCrypto = ({ user }) => {
                                             >
                                                 <option value="klay">
                                                     KLAY
+                                                </option>
+                                                <option value="dgold">
+                                                    DGOLD
                                                 </option>
                                             </select>
                                         </div>
@@ -208,7 +209,7 @@ function DepositModal({ isOpen, onClose, user }) {
                                                         />
                                                     </div>
                                                     <h2 className="text-sm text-[#FFCC29] font-semibold underline underline-offset-1">
-                                                        Deposit $KLAY
+                                                        Deposit $KLAY, $DGOLD
                                                     </h2>
                                                     <p className="text-[13px] py-1">
                                                         Add crypto to wallet

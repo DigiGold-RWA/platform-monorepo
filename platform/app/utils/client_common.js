@@ -3,6 +3,7 @@ import { ParticleProvider } from "@particle-network/provider";
 import { KlaytnTestnet, Klaytn, BNBChain } from "@particle-network/chains";
 import { ethers, toBeHex, Interface } from "ethers";
 import { useAccount } from "@particle-network/connect-react-ui";
+import { redirect } from "next/navigation";
 
 export const particleWallet = async (JWTToken) => {
     const particle = new ParticleNetwork({
@@ -13,25 +14,32 @@ export const particleWallet = async (JWTToken) => {
         chainId: KlaytnTestnet.id,
     });
 
-    const userProfile = await particle.auth.login({
-        preferredAuthType: "jwt",
-        account: JWTToken,
-        hideLoading: true,
-    });
+    try {
+        const userProfile = await particle.auth.login({
+            preferredAuthType: "jwt",
+            account: JWTToken,
+            hideLoading: true,
+        });
 
-    const account = await particle.evm.getAddress();
-    const particleProvider = new ParticleProvider(particle.auth);
-    const ethersProvider = new ethers.BrowserProvider(particleProvider, {
-        name: "klaytn",
-        chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
-    });
-    const ethersSigner = await ethersProvider.getSigner();
+        const account = await particle.evm.getAddress();
+        const particleProvider = new ParticleProvider(particle.auth);
+        const ethersProvider = new ethers.BrowserProvider(particleProvider, {
+            name: "klaytn",
+            chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID),
+        });
+        const ethersSigner = await ethersProvider.getSigner();
 
-    return {
-        particle,
-        account,
-        walletProfile: userProfile,
-        ethersProvider,
-        ethersSigner,
-    };
+        return {
+            particle,
+            account,
+            walletProfile: userProfile,
+            ethersProvider,
+            ethersSigner,
+        };
+    } catch (error) {
+        if (error.message === "Thirdparty auth error") {
+            window.location.assign("/api/auth/logout"); //Logout
+        }
+        console.log(error.message);
+    }
 };

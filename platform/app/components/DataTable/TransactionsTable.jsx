@@ -56,7 +56,7 @@ const TransactionsTable = ({ transactions }) => {
                                         scope="col"
                                         className="px-5 py-3 border-b border-[#363636]  text-left text-sm   whitespace-nowrap"
                                     >
-                                        Coin
+                                        Crypto
                                     </th>
 
                                     <th
@@ -64,6 +64,12 @@ const TransactionsTable = ({ transactions }) => {
                                         className="px-5 py-3 border-b border-[#363636]  text-left text-sm whitespace-nowrap"
                                     >
                                         Amount
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-5 py-3 border-b border-[#363636]  text-left text-sm whitespace-nowrap"
+                                    >
+                                        Tx
                                     </th>
                                     <th
                                         scope="col"
@@ -88,18 +94,30 @@ const TransactionsTable = ({ transactions }) => {
                                         </td>
                                         <td className="px-5 py-5 text-sm whitespace-nowrap">
                                             <p className="text-sm text-[#B4B1B1] font-normal">
-                                                {transaction.wallet_type}
+                                                {transaction?.crypto?.toLowerCase() ===
+                                                "klay"
+                                                    ? "Funding"
+                                                    : "Vault"}
                                             </p>
                                         </td>
                                         <td className="px-5 py-5 text-sm whitespace-nowrap">
                                             <p className="text-sm text-[#B4B1B1] font-normal">
-                                                {transaction.currency}
+                                                {transaction.crypto}
                                             </p>
                                         </td>
                                         <td className="px-5 py-5 text-sm whitespace-nowrap">
                                             <p className="text-sm text-[#B4B1B1] font-normal">
                                                 {transaction.amount}
                                             </p>
+                                        </td>
+                                        <td className="px-5 py-5 text-sm whitespace-nowrap">
+                                            <a
+                                                className="text-sm text-[#FFCC29] font-normal underline"
+                                                target="_blank"
+                                                href={`https://baobab.klaytnscope.com/tx/${transaction.tx_id}`}
+                                            >
+                                                View ↗
+                                            </a>
                                         </td>
                                         <td className="px-5 py-5 text-sm whitespace-nowrap">
                                             <TransactionStatus

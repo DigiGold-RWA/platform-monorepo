@@ -27,6 +27,7 @@ const Dashboard = () => {
     const [particle, setParticle] = useState(null);
     const [walletProfile, setWalletProfile] = useState(null);
     const [ethersProvider, setEthersProvider] = useState(null);
+    const [ethersSigner, setEthersSigner] = useState(null);
     const [klayUsd, setKlayUsd] = useState(0.0);
     const [goldUsd, setGoldUsd] = useState(0.0);
 
@@ -35,12 +36,25 @@ const Dashboard = () => {
 
     const getData = async (uri) => {
         const response = await fetch(uri);
-        return response.json();
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            return false;
+        }
     };
     const tokenIface = new ethers.Interface([
         "function balanceOf(address owner) view returns (uint256)",
+        "function transfer(address,uint256) public returns (bool)",
         "event Transfer(address indexed from, address indexed to, uint256 value)",
     ]);
+
+    // const data = tokenIface.encodeFunctionData(
+    //     "function transfer(address,uint256) public returns (bool)",
+    //     ["0x8189ed2198a4c499bCBEbEEF09879a0969BCD579", ethers.parseEther("2")]
+    // );
+
+    // console.log("Dataaa", data);
+
     const exchangeIface = new ethers.Interface([
         "function klayUsdPrice() view returns (uint256)",
         "function goldUsdPrice() view returns (uint256)",
@@ -63,7 +77,6 @@ const Dashboard = () => {
             Number(ethers.formatEther(balance)).toFixed(3).slice(0, -1)
         );
     };
-
     const fetchOraclePrices = async (
         _walletAddress,
         _ethersProvider,
@@ -102,14 +115,33 @@ const Dashboard = () => {
         );
     };
 
+    const newTransaction = async (data) => {
+        const response = await fetch(`${hostUrl}/api/customer/transactions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.status === 200) {
+            const res = await response.json();
+            setTransactionHistory([...transactionHistory, res?.data]);
+        }
+    };
+
     useEffect(() => {
         if (user) {
             getData(`${hostUrl}/api/customer/profile`).then((data) => {
-                setProfile(data?.data);
+                if (data) setProfile(data?.data);
             });
 
             getData(`${hostUrl}/api/customer/token`).then((data) => {
-                setToken(data?.data);
+                if (data) setToken(data?.data);
+            });
+
+            getData(`${hostUrl}/api/customer/transactions`).then((data) => {
+                if (data) setTransactionHistory(data?.data);
             });
         }
     }, [user]);
@@ -128,6 +160,7 @@ const Dashboard = () => {
                     setParticle(particle);
                     setWalletProfile(walletProfile);
                     setEthersProvider(ethersProvider);
+                    setEthersSigner(ethersSigner);
                     getdGoldBalance(account, ethersProvider);
                     fetchOraclePrices(account, ethersProvider, ethersSigner);
                 }
@@ -150,55 +183,132 @@ const Dashboard = () => {
         }
     }, [ethersProvider]);
 
+    const Caver = require("caver-js");
+    const caver = new Caver(process.env.NEXT_PUBLIC_RPC_WSS_URL); // Initialize a connection to the Klaytn network
+    const contract = new caver.contract(
+        [
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        indexed: true,
+                        internalType: "address",
+                        name: "from",
+                        type: "address",
+                    },
+                    {
+                        indexed: true,
+                        internalType: "address",
+                        name: "to",
+                        type: "address",
+                    },
+                    {
+                        indexed: false,
+                        internalType: "uint256",
+                        name: "value",
+                        type: "uint256",
+                    },
+                ],
+                name: "Transfer",
+                type: "event",
+            },
+        ],
+        process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS
+    );
+
     useEffect(() => {
-        const contract = new ethers.Contract(
-            process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS,
-            [
-                {
-                    anonymous: false,
-                    inputs: [
-                        {
-                            indexed: true,
-                            internalType: "address",
-                            name: "from",
-                            type: "address",
-                        },
-                        {
-                            indexed: true,
-                            internalType: "address",
-                            name: "to",
-                            type: "address",
-                        },
-                        {
-                            indexed: false,
-                            internalType: "uint256",
-                            name: "value",
-                            type: "uint256",
-                        },
-                    ],
-                    name: "Transfer",
-                    type: "event",
-                },
-            ],
-            ethersProvider
-        );
+        console.log({ caver });
+        if (ethersProvider) {
+            if (ethersProvider && walletAddress) {
+                console.log("Subscribing to events");
 
-        // if (ethersProvider && walletAddress) {
-        //     console.log("filter:", contract.filters.Transfer, walletAddress);
+                const transferEvent = contract.events.Transfer({
+                    filter: { _to: walletAddress },
+                });
 
-        //     contract.on(
-        //         contract.filters.Transfer(null, walletAddress),
-        //         "Transfer",
-        //         (from, to, value) => {
-        //             console.log("Transfer event", { from, to, value });
-        //         }
-        //     );
-        // }
+                transferEvent.on("data", (event) => {
+                    const payload = {
+                        crypto:
+                            event.address ===
+                            process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS
+                                ? "DGOLD"
+                                : "",
+                        type: "deposit",
+                        amount: ethers.formatEther(event?.returnValues?.value),
+                        tx_id: event?.transactionHash,
+                        source_address: event?.returnValues?.from,
+                        destination_address: event?.returnValues?.to,
+                    };
 
-        // return () => {
-        //     contract.removeAllListeners();
-        // };
-    }, [ethersProvider]);
+                    console.log("DGOLD Deposit Transaction:", payload);
+
+                    newTransaction(payload);
+                });
+
+                transferEvent.on("error", (error) => {
+                    console.log("Transfer Event Error:", error);
+                });
+
+                caver.klay.subscribe(
+                    "pendingTransactions",
+                    (err, pendingTx) => {
+                        if (err) {
+                            console.error("Error occurred:", err);
+                            return;
+                        }
+
+                        // Check if the pending transaction is a Klay transfer to the address being monitored
+                        caver.klay
+                            .getTransaction(pendingTx)
+                            .then((transaction) => {
+                                if (
+                                    transaction?.to?.toLowerCase() ===
+                                    walletAddress?.toLowerCase()
+                                ) {
+                                    const payload = {
+                                        crypto: "KLAY",
+                                        type: "deposit",
+                                        amount: ethers.formatEther(
+                                            transaction?.value
+                                        ),
+                                        tx_id: transaction?.hash,
+                                        source_address:
+                                            transaction?.from?.toLowerCase(),
+                                        destination_address:
+                                            transaction?.to?.toLowerCase(),
+                                        network_fee:
+                                            (parseInt(
+                                                transaction?.maxPriorityFeePerGas
+                                            ) *
+                                                transaction?.gas) /
+                                            1e18,
+                                    };
+
+                                    console.log(
+                                        "KLAY Deposit Transaction:",
+                                        payload
+                                    );
+
+                                    newTransaction(payload);
+                                    // Process the transaction details as needed
+                                }
+                            })
+                            .catch((error) => {
+                                console.error(
+                                    "Error fetching transaction:",
+                                    error
+                                );
+                            });
+                    }
+                );
+            }
+
+            return () => {
+                // Unsubscribe from events when the component is unmounted
+                // caver.klay.clearSubscriptions();
+            };
+        }
+    }, [ethersProvider, walletAddress]);
 
     const {
         isOpen: depositIsOpen,
@@ -398,12 +508,20 @@ const Dashboard = () => {
                         />
                     )}
 
-                    <WithdrawModal
-                        isOpen={withdrawIsOpen}
-                        onClose={onWithdrawClose}
-                        btnRef={withdrawBtnRef}
-                        user={profile}
-                    />
+                    {ethersSigner && particle && (
+                        <WithdrawModal
+                            isOpen={withdrawIsOpen}
+                            onClose={onWithdrawClose}
+                            btnRef={withdrawBtnRef}
+                            user={profile}
+                            ethersSigner={ethersSigner}
+                            particle={particle}
+                            tokenIface={tokenIface}
+                            setTransactionHistory={setTransactionHistory}
+                            transactionHistory={transactionHistory}
+                            newTransaction={newTransaction}
+                        />
+                    )}
                 </>
             )}
         </>
