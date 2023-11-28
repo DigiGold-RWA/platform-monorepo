@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server.js";
 import { User } from "../../db/models/all.js";
-import { getToken } from "next-auth/jwt";
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-export async function POST(request) {
-    const { email } = await getToken({ req: request });
+export const POST = withApiAuthRequired(async function myApiRoute(req) {
+    const res = new NextResponse();
+    const { user } = await getSession(req, res);
+    const email = user?.email;
 
     if (!email) {
         return NextResponse.json({
@@ -37,6 +39,8 @@ export async function POST(request) {
         callback_url: process.env.SHUFTIPRO_CALLBACK_URL,
         journey_id: process.env.SHUFTIPRO_JOURNEY_ID,
     };
+
+    console.log("payload", payload);
 
     var token = btoa(
         `${process.env.SHUFTI_PRO_CLIENT_ID}:${process.env.SHUFTIPRO_SECRET}`
@@ -72,4 +76,4 @@ export async function POST(request) {
         status: 200,
         data,
     });
-}
+});

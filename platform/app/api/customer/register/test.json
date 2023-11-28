@@ -1,0 +1,24 @@
+{
+    "params": {
+        "user": {
+            "app_metadata": {},
+            "created_at": "2023-11-26T21:38:45.739Z",
+            "email": "j+smith@example.com",
+            "email_verified": true,
+            "family_name": "Smith",
+            "given_name": "John",
+            "last_password_reset": "2023-11-26T21:38:45.739Z",
+            "name": "John Smith",
+            "nickname": "j+smith",
+            "phoneNumber": "123-123-1234",
+            "phone_number": "123-123-1234",
+            "phone_verified": true,
+            "picture": "http://www.gravatar.com/avatar/?d=identicon",
+            "tenant": "dev-38sck2l3gsuzapyz",
+            "updated_at": "2023-11-26T21:38:45.739Z",
+            "user_id": "auth0|5f7c8ec7c33c6c004bbafe82",
+            "user_metadata": {},
+            "username": "j+smith"
+        }
+    }
+}

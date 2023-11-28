@@ -7,8 +7,7 @@ import { LoaderIcon } from "./IconComponent";
 import axios from "axios";
 import { InfoCircle } from "iconsax-react";
 
-export default function Notification() {
-    const user = {};
+export default function Notification({ user }) {
     const [loading, setLoading] = useState(false);
 
     const updateKycUrl = async () => {
@@ -17,17 +16,16 @@ export default function Notification() {
         if (user.shuftipro_url) {
             window.open(user.shuftipro_url, "_blank");
         } else {
-            const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
+            const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
 
-            const response = await axios.post(
-                `${hostUrl}/api/customer/initkyc`,
-                {
-                    withCredentials: true,
-                }
-            );
+            const response = await fetch(`${hostUrl}/api/customer/initkyc`, {
+                method: "POST",
+            });
+
+            const res = await response.json();
 
             if (response.status === 200) {
-                window.open(response.data?.data?.verification_url, "_blank");
+                window.open(res.data?.verification_url, "_blank");
             }
         }
 
@@ -36,7 +34,7 @@ export default function Notification() {
 
     return (
         <div>
-            {user.kyc_status !== "approved" ? (
+            {user && user.kyc_status !== "approved" ? (
                 <div className="bg-[#313130] border border-[#373737]  text-sm py-3 my-4 px-3 gap-3 rounded-lg  flex items-center justify-between ">
                     <div className=" flex items-center justify-start flex-1 gap-2">
                         <InfoCircle color="#FFFFFF" />{" "}
@@ -44,7 +42,7 @@ export default function Notification() {
                             <p className="text-white inline-flex">
                                 Your KYC is in progress. This notification will
                                 be removed once your KYC is approved
-                                <Link
+                                {/* <Link
                                     href="#"
                                     target="_blank"
                                     className="ml-4 text-white font-semibold flex items-center gap-2"
@@ -53,7 +51,7 @@ export default function Notification() {
                                     <span>
                                         <ArrowRightIcon />
                                     </span>
-                                </Link>
+                                </Link> */}
                             </p>
                         ) : (
                             <p className="text-white inline-flex">
@@ -73,7 +71,7 @@ export default function Notification() {
                         )}
                     </div>
 
-                    {user.kyc_status !== "pending" &&
+                    {user.kyc_status === "" &&
                         (loading ? (
                             <LoaderIcon
                                 extraClass={"text-[#FFCC29]"}
@@ -87,6 +85,13 @@ export default function Notification() {
                                 Complete KYC
                             </button>
                         ))}
+
+                    {user.kyc_status === "pending" && (
+                        <LoaderIcon
+                            extraClass={"text-[#FFCC29]"}
+                            className="animate-spin mr-1"
+                        />
+                    )}
                 </div>
             ) : (
                 ""

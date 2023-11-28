@@ -21,6 +21,9 @@ const initUser = (sequelize, DataTypes) => {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            phone: {
+                type: Sequelize.STRING,
+            },
             password: {
                 type: Sequelize.STRING,
             },
@@ -32,16 +35,9 @@ const initUser = (sequelize, DataTypes) => {
             },
             dob: {
                 type: Sequelize.DATE,
-                get() {
-                    const rawValue = this.getDataValue("dob");
-                    return rawValue ? formatDate(rawValue, 1) : "";
-                },
             },
             address: {
                 type: DataTypes.TEXT("long"),
-            },
-            fireblock_vault_id: {
-                type: Sequelize.STRING,
             },
             wallet_address: {
                 type: Sequelize.STRING,

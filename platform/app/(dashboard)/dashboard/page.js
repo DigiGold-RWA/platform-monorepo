@@ -9,54 +9,196 @@ import CardComponent from "@/app/components/PageLayout/CardComponent";
 import MainComponent from "@/app/components/PageLayout/MainComponent";
 import { PageTitle } from "@/app/components/PageLayout/PageTitle";
 import TransactionsTable from "@/app/components/DataTable/TransactionsTable";
-import axios from "axios";
 import Image from "next/image";
 import { EyeIcon } from "@/app/components/IconComponent";
 import DepositModal from "@/app/components/Modals/DepositModal";
-import { user } from "@/public/data";
 import WithdrawModal from "@/app/components/Modals/WithdrawModal";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { particleWallet } from "@/app/utils/client_common";
+import { ethers, Interface } from "ethers";
 
 const Dashboard = () => {
-    const [usdcBalance, setUsdcBalance] = useState(0.0);
+    const [klayBalance, setKlayBalance] = useState(0.0);
     const [dGoldBalance, setdGoldBalance] = useState(0.0);
     const [walletAddress, setWalletAddress] = useState("");
     const [transactionHistory, setTransactionHistory] = useState([]);
+    const [token, setToken] = useState("");
+    const [profile, setProfile] = useState(null);
+    const [particle, setParticle] = useState(null);
+    const [walletProfile, setWalletProfile] = useState(null);
+    const [ethersProvider, setEthersProvider] = useState(null);
+    const [klayUsd, setKlayUsd] = useState(0.0);
+    const [goldUsd, setGoldUsd] = useState(0.0);
 
-    const authUser = null;
+    const { user, isLoading } = useUser();
+    const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
 
-    // const getAssets = async () => {
-    //   const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
-    //   const res = await axios.get(`${hostUrl}/api/customer/asset`, {
-    //     withCredentials: true,
-    //   });
+    const getData = async (uri) => {
+        const response = await fetch(uri);
+        return response.json();
+    };
+    const tokenIface = new ethers.Interface([
+        "function balanceOf(address owner) view returns (uint256)",
+        "event Transfer(address indexed from, address indexed to, uint256 value)",
+    ]);
+    const exchangeIface = new ethers.Interface([
+        "function klayUsdPrice() view returns (uint256)",
+        "function goldUsdPrice() view returns (uint256)",
+        "function calculateGoldOutAndFee(uint256) public view returns (uint256,uint256,uint256)",
+        "function fectchLatestPrices() public",
+    ]);
 
-    //   return res?.data?.data;
-    // };
-    // const getTransactionHistory = async () => {
-    //   const hostUrl = process.env.NEXT_PUBLIC_AUTH_URL;
-    //   const res = await axios.get(`${hostUrl}/api/customer/transactions`, {
-    //     withCredentials: true,
-    //   });
+    const getdGoldBalance = async (_walletAddress, _ethersProvider) => {
+        const data = tokenIface.encodeFunctionData("balanceOf(address)", [
+            _walletAddress,
+        ]);
 
-    //   return res?.data?.data;
-    // };
+        const balance = await _ethersProvider.provider.call({
+            from: _walletAddress,
+            to: process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS,
+            data: data,
+        });
 
-    // useEffect(() => {
-    //     if (user && user?.fireblock_vault_id) {
-    //         getAssets().then((balances) => {
-    //             if (balances) {
-    //                 setUsdcBalance(balances.usdc);
-    //                 setdGoldBalance(balances.dGold);
-    //             }
-    //         });
+        setdGoldBalance(
+            Number(ethers.formatEther(balance)).toFixed(3).slice(0, -1)
+        );
+    };
 
-    //         getTransactionHistory().then((transactions) => {
-    //             if (transactions) {
-    //                 setTransactionHistory(transactions);
-    //             }
-    //         });
-    //     }
-    // }, [user]);
+    const fetchOraclePrices = async (
+        _walletAddress,
+        _ethersProvider,
+        _ethersSigner
+    ) => {
+        const dataK = exchangeIface.encodeFunctionData("klayUsdPrice", []);
+        const dataG = exchangeIface.encodeFunctionData("goldUsdPrice", []);
+
+        // const dataF = exchangeIface.encodeFunctionData(
+        //     "fectchLatestPrices",
+        //     []
+        // );
+        // const fetch = await _ethersSigner.sendTransaction({
+        //     from: _walletAddress,
+        //     to: process.env.NEXT_PUBLIC_DIGIGOLD_EXCHANGE_ADDRESS,
+        //     data: dataF,
+        // });
+
+        const klayPrice = await _ethersProvider.provider.call({
+            from: _walletAddress,
+            to: process.env.NEXT_PUBLIC_DIGIGOLD_EXCHANGE_ADDRESS,
+            data: dataK,
+        });
+
+        const goldPrice = await _ethersProvider.provider.call({
+            from: _walletAddress,
+            to: process.env.NEXT_PUBLIC_DIGIGOLD_EXCHANGE_ADDRESS,
+            data: dataG,
+        });
+
+        setKlayUsd(
+            Number(ethers.formatUnits(klayPrice, 9)).toFixed(3).slice(0, -1)
+        );
+        setGoldUsd(
+            Number(ethers.formatUnits(goldPrice, 9)).toFixed(3).slice(0, -1)
+        );
+    };
+
+    useEffect(() => {
+        if (user) {
+            getData(`${hostUrl}/api/customer/profile`).then((data) => {
+                setProfile(data?.data);
+            });
+
+            getData(`${hostUrl}/api/customer/token`).then((data) => {
+                setToken(data?.data);
+            });
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (token) {
+            particleWallet(token).then(
+                ({
+                    particle,
+                    account,
+                    walletProfile,
+                    ethersProvider,
+                    ethersSigner,
+                }) => {
+                    setWalletAddress(account);
+                    setParticle(particle);
+                    setWalletProfile(walletProfile);
+                    setEthersProvider(ethersProvider);
+                    getdGoldBalance(account, ethersProvider);
+                    fetchOraclePrices(account, ethersProvider, ethersSigner);
+                }
+            );
+        }
+    }, [token]);
+
+    useEffect(() => {
+        if (ethersProvider && walletAddress) {
+            ethersProvider.provider
+                .getBalance(walletAddress)
+                .then((balance) => {
+                    console.log({ balance: ethers.formatEther(balance) });
+                    setKlayBalance(
+                        Number(ethers.formatEther(balance))
+                            .toFixed(3)
+                            .slice(0, -1)
+                    );
+                });
+        }
+    }, [ethersProvider]);
+
+    useEffect(() => {
+        const contract = new ethers.Contract(
+            process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS,
+            [
+                {
+                    anonymous: false,
+                    inputs: [
+                        {
+                            indexed: true,
+                            internalType: "address",
+                            name: "from",
+                            type: "address",
+                        },
+                        {
+                            indexed: true,
+                            internalType: "address",
+                            name: "to",
+                            type: "address",
+                        },
+                        {
+                            indexed: false,
+                            internalType: "uint256",
+                            name: "value",
+                            type: "uint256",
+                        },
+                    ],
+                    name: "Transfer",
+                    type: "event",
+                },
+            ],
+            ethersProvider
+        );
+
+        // if (ethersProvider && walletAddress) {
+        //     console.log("filter:", contract.filters.Transfer, walletAddress);
+
+        //     contract.on(
+        //         contract.filters.Transfer(null, walletAddress),
+        //         "Transfer",
+        //         (from, to, value) => {
+        //             console.log("Transfer event", { from, to, value });
+        //         }
+        //     );
+        // }
+
+        // return () => {
+        //     contract.removeAllListeners();
+        // };
+    }, [ethersProvider]);
 
     const {
         isOpen: depositIsOpen,
@@ -76,7 +218,7 @@ const Dashboard = () => {
         <>
             {user !== null && (
                 <>
-                    <Notification user={user} />
+                    <Notification user={profile} />
 
                     <div>
                         <div className="w-full flex items-center justify-between flex-wrap mb-6 gap-2">
@@ -124,19 +266,19 @@ const Dashboard = () => {
                                                     <option value="klay">
                                                         KLAY
                                                     </option>
-                                                    <option value="usd">
+                                                    {/* <option value="usd">
                                                         USD
                                                     </option>
-                                                    {user &&
-                                                    user?.country_currency ? (
+                                                    {profile &&
+                                                    profile?.country_currency ? (
                                                         <option value={2}>
                                                             {
-                                                                user?.country_currency
+                                                                profile?.country_currency
                                                             }
                                                         </option>
                                                     ) : (
                                                         ""
-                                                    )}
+                                                    )} */}
                                                 </select>
                                             </div>
                                         </div>
@@ -150,7 +292,14 @@ const Dashboard = () => {
                                             Total Balance
                                         </p>
                                         <h3 className="text-3xl text-white">
-                                            ${usdcBalance}
+                                            {klayBalance} {""}
+                                            <span className="text-sm">
+                                                (~ $
+                                                {(
+                                                    klayBalance * klayUsd
+                                                ).toFixed(2)}
+                                                )
+                                            </span>
                                         </h3>
                                     </div>
                                 </CardComponent>
@@ -175,7 +324,14 @@ const Dashboard = () => {
                                             Total Balance
                                         </p>
                                         <h3 className="text-3xl text-white">
-                                            ${dGoldBalance}
+                                            {dGoldBalance} {""}
+                                            <span className="text-sm">
+                                                (~ $
+                                                {(
+                                                    goldUsd * dGoldBalance
+                                                ).toFixed()}{" "}
+                                                )
+                                            </span>
                                         </h3>
                                     </div>
                                 </CardComponent>
@@ -231,20 +387,22 @@ const Dashboard = () => {
                 </>
             )}
 
-            {user && (
+            {walletProfile && walletProfile?.wallets && (
                 <>
-                    <DepositModal
-                        isOpen={depositIsOpen}
-                        onClose={onDepositClose}
-                        btnRef={depositBtnRef}
-                        user={user}
-                    />
+                    {walletAddress && (
+                        <DepositModal
+                            isOpen={depositIsOpen}
+                            onClose={onDepositClose}
+                            btnRef={depositBtnRef}
+                            user={walletProfile}
+                        />
+                    )}
 
                     <WithdrawModal
                         isOpen={withdrawIsOpen}
                         onClose={onWithdrawClose}
                         btnRef={withdrawBtnRef}
-                        user={user}
+                        user={profile}
                     />
                 </>
             )}
