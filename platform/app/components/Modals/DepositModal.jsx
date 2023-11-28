@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Modal,
     ModalBody,
@@ -17,6 +17,7 @@ import {
 import { CardReceiveIcon, CopyIcon, MoneyReceiveIcon } from "../IconComponent";
 import Image from "next/image";
 import { Wallet } from "iconsax-react";
+import { rampSDK } from "@alchemy-pay/ramp-sdk";
 
 const DepositCrypto = ({ user }) => {
     const walletAddress = user?.wallets?.[1].public_address;
@@ -164,8 +165,43 @@ const DepositCrypto = ({ user }) => {
     );
 };
 
-function DepositModal({ isOpen, onClose, user }) {
+function DepositModal({ isOpen, onClose, user, profile }) {
     const [option, setOption] = useState(null);
+
+    console.log("profile", profile, user);
+
+    useEffect(() => {
+        if (option === "buy") {
+            let ramp = new rampSDK({
+                secret: process.env.NEXT_PUBLIC_ALCHEMY_APP_SECRET,
+                appId: process.env.NEXT_PUBLIC_ALCHEMY_APP_ID,
+                environment: "TEST",
+                containerNode: "rampView",
+                optionalParameter: {
+                    // crypto: "KLAY",
+                    network: "KLAYTN",
+                    fiat: profile?.country_currency,
+                    address: user?.wallets?.[1].public_address,
+                    email: profile?.email,
+                    // .....
+                    // Parameters Tips:(The exact name and case of the parameter must be used.)
+                    // For the full list of customisation options check the link above
+                },
+            });
+
+            ramp.init();
+
+            ramp.on("RAMP_WIDGET_CLOSE", (cb) => {
+                ramp.close();
+            });
+
+            ramp.on("*", (cb) => {
+                if (cb.eventName === "RAMP_WIDGET_CLOSE") {
+                    ramp.close();
+                }
+            });
+        }
+    }, [option]);
 
     return (
         <>
@@ -178,7 +214,7 @@ function DepositModal({ isOpen, onClose, user }) {
                             : option === "deposit"
                             ? "Deposit Funds"
                             : option === "buy"
-                            ? "Buy Funds"
+                            ? "Buy $KLAY"
                             : ""}
                     </ModalHeader>
                     <ModalCloseButton
@@ -268,6 +304,14 @@ function DepositModal({ isOpen, onClose, user }) {
 
                             {option === "deposit" && (
                                 <DepositCrypto user={user} />
+                            )}
+
+                            {option === "buy" && (
+                                <div
+                                    className="px-6"
+                                    style={{ height: "650px" }}
+                                    id="rampView"
+                                ></div>
                             )}
                         </div>
                     </ModalBody>

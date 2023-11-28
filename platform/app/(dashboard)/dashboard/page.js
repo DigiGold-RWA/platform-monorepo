@@ -505,6 +505,7 @@ const Dashboard = () => {
                             onClose={onDepositClose}
                             btnRef={depositBtnRef}
                             user={walletProfile}
+                            profile={profile}
                         />
                     )}
 
