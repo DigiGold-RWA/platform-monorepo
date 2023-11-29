@@ -30,30 +30,12 @@ function WithdrawModal({
     ethersSigner,
     particle,
     tokenIface,
-    setTransactionHistory,
-    transactionHistory,
     newTransaction,
 }) {
     const [option, setOption] = useState("klay");
     const [amount, setAmount] = useState(1);
     const [address, setAddress] = useState("");
     const [error, setError] = useState("");
-
-    // const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
-    // const newTransaction = async (data) => {
-    //     const response = await fetch(`${hostUrl}/api/customer/transactions`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(data),
-    //     });
-
-    //     if (response.status === 200) {
-    //         const res = await response.json();
-    //         setTransactionHistory([...transactionHistory, res?.data]);
-    //     }
-    // };
 
     const transferAsset = async (e) => {
         e.preventDefault();
