@@ -13,7 +13,7 @@ const initTransaction = (sequelize, DataTypes) => {
                 primaryKey: true,
             },
             type: {
-                type: DataTypes.ENUM("deposit", "withdrawal"),
+                type: DataTypes.ENUM("deposit", "withdrawal", "swap"),
             },
             crypto: {
                 type: DataTypes.ENUM("KLAY", "DGOLD"),

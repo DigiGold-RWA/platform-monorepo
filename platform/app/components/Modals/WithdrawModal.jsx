@@ -88,8 +88,6 @@ function WithdrawModal({
                             destination_address: address,
                         };
 
-                        console.log("KLAY Withdrawal Transaction:", payload);
-
                         newTransaction(payload);
                     })
                     .catch((err) => {
@@ -107,8 +105,6 @@ function WithdrawModal({
                     to: process.env.NEXT_PUBLIC_DIGIGOLD_TOKEN_ADDRESS,
                     data: data,
                 };
-
-                console.log(payload);
 
                 ethersSigner
                     .sendTransaction({

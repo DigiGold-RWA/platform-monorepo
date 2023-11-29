@@ -168,7 +168,7 @@ const DepositCrypto = ({ user }) => {
 function DepositModal({ isOpen, onClose, user, profile }) {
     const [option, setOption] = useState(null);
 
-    console.log("profile", profile, user);
+    // console.log("profile", profile, user);
 
     useEffect(() => {
         if (option === "buy") {
@@ -178,8 +178,8 @@ function DepositModal({ isOpen, onClose, user, profile }) {
                 environment: "TEST",
                 containerNode: "rampView",
                 optionalParameter: {
-                    // crypto: "KLAY",
-                    network: "KLAYTN",
+                    crypto: "KLAY",
+                    network: "KLAY",
                     fiat: profile?.country_currency,
                     address: user?.wallets?.[1].public_address,
                     email: profile?.email,

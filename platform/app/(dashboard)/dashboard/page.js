@@ -14,7 +14,11 @@ import { EyeIcon } from "@/app/components/IconComponent";
 import DepositModal from "@/app/components/Modals/DepositModal";
 import WithdrawModal from "@/app/components/Modals/WithdrawModal";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { particleWallet } from "@/app/utils/client_common";
+import {
+    particleWallet as particleAuth,
+    getData,
+    hostUrl,
+} from "@/app/utils/client_common";
 import { ethers, Interface } from "ethers";
 
 const Dashboard = () => {
@@ -32,28 +36,12 @@ const Dashboard = () => {
     const [goldUsd, setGoldUsd] = useState(0.0);
 
     const { user, isLoading } = useUser();
-    const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
 
-    const getData = async (uri) => {
-        const response = await fetch(uri);
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            return false;
-        }
-    };
     const tokenIface = new ethers.Interface([
         "function balanceOf(address owner) view returns (uint256)",
         "function transfer(address,uint256) public returns (bool)",
         "event Transfer(address indexed from, address indexed to, uint256 value)",
     ]);
-
-    // const data = tokenIface.encodeFunctionData(
-    //     "function transfer(address,uint256) public returns (bool)",
-    //     ["0x8189ed2198a4c499bCBEbEEF09879a0969BCD579", ethers.parseEther("2")]
-    // );
-
-    // console.log("Dataaa", data);
 
     const exchangeIface = new ethers.Interface([
         "function klayUsdPrice() view returns (uint256)",
@@ -148,7 +136,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (token) {
-            particleWallet(token).then(
+            particleAuth(token).then(
                 ({
                     particle,
                     account,
@@ -305,7 +293,7 @@ const Dashboard = () => {
 
             return () => {
                 // Unsubscribe from events when the component is unmounted
-                // caver.klay.clearSubscriptions();
+                caver.klay.clearSubscriptions();
             };
         }
     }, [ethersProvider, walletAddress]);

@@ -1,9 +1,7 @@
 import { ParticleNetwork, WalletEntryPosition } from "@particle-network/auth";
 import { ParticleProvider } from "@particle-network/provider";
-import { KlaytnTestnet, Klaytn, BNBChain } from "@particle-network/chains";
-import { ethers, toBeHex, Interface } from "ethers";
-import { useAccount } from "@particle-network/connect-react-ui";
-import { redirect } from "next/navigation";
+import { KlaytnTestnet, Klaytn } from "@particle-network/chains";
+import { ethers } from "ethers";
 
 export const particleWallet = async (JWTToken) => {
     const particle = new ParticleNetwork({
@@ -43,3 +41,14 @@ export const particleWallet = async (JWTToken) => {
         console.log(error.message);
     }
 };
+
+export const getData = async (uri) => {
+    const response = await fetch(uri);
+    if (response.status === 200) {
+        return response.json();
+    } else {
+        return false;
+    }
+};
+
+export const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
