@@ -24,7 +24,7 @@ import { ethers, Interface } from "ethers";
 const Dashboard = () => {
     const [klayBalance, setKlayBalance] = useState(0.0);
     const [dGoldBalance, setdGoldBalance] = useState(0.0);
-    const [walletAddress, setWalletAddress] = useState("");
+    const [walletAddress, setWalletAddress] = useState(null);
     const [transactionHistory, setTransactionHistory] = useState([]);
     const [token, setToken] = useState("");
     const [profile, setProfile] = useState(null);

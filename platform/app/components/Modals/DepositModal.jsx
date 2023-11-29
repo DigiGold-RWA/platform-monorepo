@@ -21,6 +21,7 @@ import { rampSDK } from "@alchemy-pay/ramp-sdk";
 
 const DepositCrypto = ({ user, walletAddress }) => {
     // const walletAddress = user?.wallets?.[1].public_address;
+    console.log(user, walletAddress);
     const [depositCheck, setdepositCheck] = useState(true);
     return (
         <>
