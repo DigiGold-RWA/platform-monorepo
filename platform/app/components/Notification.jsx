@@ -76,23 +76,11 @@ export default function Notification({ user }) {
                             </button>
                         ))}
 
-                    {user.kyc_status === "pending" ? (
+                    {user.kyc_status === "pending" && (
                         <LoaderIcon
                             extraClass={"text-[#FFCC29]"}
                             className="animate-spin mr-1"
                         />
-                    ) : loading ? (
-                        <LoaderIcon
-                            extraClass={"text-[#FFCC29]"}
-                            className="animate-spin mr-1"
-                        />
-                    ) : (
-                        <button
-                            className="text-[#FFCC29] underline font-bold text-sm"
-                            onClick={updateKycUrl}
-                        >
-                            Complete KYC
-                        </button>
                     )}
                 </div>
             ) : (
