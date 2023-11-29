@@ -22,7 +22,7 @@ import { rampSDK } from "@alchemy-pay/ramp-sdk";
 const DepositCrypto = ({ user, walletAddress }) => {
     // const walletAddress = user.wallets.find(wallet => wallet?.chain_name === "evm_chain")?.public_address;
     console.log(user, walletAddress);
-    const [depositCheck, setdepositCheck] = useState(true);
+    const [depositCheck, setdepositCheck] = useState(false);
     return (
         <>
             <div className="">
@@ -72,12 +72,10 @@ const DepositCrypto = ({ user, walletAddress }) => {
                                             <input
                                                 id="agree3"
                                                 type="checkbox"
-                                                checked={true}
                                                 onChange={() => {
                                                     setdepositCheck(
                                                         !depositCheck
                                                     );
-                                                    console.log("checked");
                                                 }}
                                                 className="w-3 h-3 mt-1 accent-[#FFCC29]  rounded-full focus:ring-none"
                                             />
