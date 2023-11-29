@@ -494,6 +494,7 @@ const Dashboard = () => {
                             btnRef={depositBtnRef}
                             user={walletProfile}
                             profile={profile}
+                            walletAddress={walletAddress}
                         />
                     )}
 

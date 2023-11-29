@@ -19,8 +19,8 @@ import Image from "next/image";
 import { Wallet } from "iconsax-react";
 import { rampSDK } from "@alchemy-pay/ramp-sdk";
 
-const DepositCrypto = ({ user }) => {
-    const walletAddress = user?.wallets?.[1].public_address;
+const DepositCrypto = ({ user, walletAddress }) => {
+    // const walletAddress = user?.wallets?.[1].public_address;
     const [depositCheck, setdepositCheck] = useState(true);
     return (
         <>
@@ -165,7 +165,7 @@ const DepositCrypto = ({ user }) => {
     );
 };
 
-function DepositModal({ isOpen, onClose, user, profile }) {
+function DepositModal({ isOpen, onClose, user, profile, walletAddress }) {
     const [option, setOption] = useState(null);
 
     // console.log("profile", profile, user);
@@ -181,7 +181,7 @@ function DepositModal({ isOpen, onClose, user, profile }) {
                     crypto: "KLAY",
                     network: "KLAY",
                     fiat: profile?.country_currency,
-                    address: user?.wallets?.[1].public_address,
+                    address: walletAddress, //user?.wallets?.[1].public_address,
                     email: profile?.email,
                     // .....
                     // Parameters Tips:(The exact name and case of the parameter must be used.)
