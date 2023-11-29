@@ -20,7 +20,7 @@ import { Wallet } from "iconsax-react";
 import { rampSDK } from "@alchemy-pay/ramp-sdk";
 
 const DepositCrypto = ({ user, walletAddress }) => {
-    // const walletAddress = user?.wallets?.[1].public_address;
+    // const walletAddress = user.wallets.find(wallet => wallet?.chain_name === "evm_chain")?.public_address;
     console.log(user, walletAddress);
     const [depositCheck, setdepositCheck] = useState(true);
     return (
@@ -304,7 +304,10 @@ function DepositModal({ isOpen, onClose, user, profile, walletAddress }) {
                             )}
 
                             {option === "deposit" && (
-                                <DepositCrypto user={user} />
+                                <DepositCrypto
+                                    user={user}
+                                    walletAddress={walletAddress}
+                                />
                             )}
 
                             {option === "buy" && (

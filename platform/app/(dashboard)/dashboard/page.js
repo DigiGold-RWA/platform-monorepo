@@ -487,16 +487,18 @@ const Dashboard = () => {
 
             {walletProfile && walletProfile?.wallets && (
                 <>
-                    {walletAddress && (
-                        <DepositModal
-                            isOpen={depositIsOpen}
-                            onClose={onDepositClose}
-                            btnRef={depositBtnRef}
-                            user={walletProfile}
-                            profile={profile}
-                            walletAddress={walletAddress}
-                        />
-                    )}
+                    {walletAddress &&
+                        particle &&
+                        ethersSigner(
+                            <DepositModal
+                                isOpen={depositIsOpen}
+                                onClose={onDepositClose}
+                                btnRef={depositBtnRef}
+                                user={walletProfile}
+                                profile={profile}
+                                walletAddress={walletAddress}
+                            />
+                        )}
 
                     {ethersSigner && particle && (
                         <WithdrawModal
