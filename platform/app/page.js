@@ -56,7 +56,7 @@ export default function Home() {
                         </h1>
                         <p>
                             Experience the future of Gold ownership. Securely
-                            own as little as 1g(~$64) Tokenized Gold backed by
+                            own as little as 1g(~$64) of Tokenized Gold backed by
                             99.9% of pure Gold vaulted in Dubai without any
                             associated risk.
                         </p>
