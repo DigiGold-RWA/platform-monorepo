@@ -89,12 +89,7 @@ async function approveKYC(updateData, profile, data) {
     updateData.country_code = data.verification_data?.document?.country;
     updateData.country_currency = data.info?.geolocation?.currency;
     updateData.address = data.verification_data?.address?.full_address;
-    updateData.name =
-        data.verification_data?.document?.name?.first_name +
-        " " +
-        data.verification_data?.document?.name?.middle_name +
-        " " +
-        data.verification_data?.document?.name?.last_name;
+    updateData.name = data.verification_data?.document?.name?.full_name;
 
     profile.update(updateData);
 }
