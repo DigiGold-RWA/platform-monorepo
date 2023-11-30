@@ -37,7 +37,7 @@ export const POST = withApiAuthRequired(async function myApiRoute(req) {
         email: profile.email,
         redirect_url: process.env.SHUFTIPRO_REDIRECT_URL,
         callback_url: process.env.SHUFTIPRO_CALLBACK_URL,
-        journey_id: process.env.SHUFTIPRO_JOURNEY_ID,
+        journey_id: "JQ7e3cE61701284144", //process.env.SHUFTIPRO_JOURNEY_ID,
     };
 
     console.log("payload", payload);
