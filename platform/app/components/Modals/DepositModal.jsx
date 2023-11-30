@@ -84,7 +84,7 @@ const DepositCrypto = ({ user, walletAddress }) => {
                                                 className="ml-2 text-[13px]"
                                             >
                                                 I totally understand I have to
-                                                send my crypto to the BSC
+                                                send my crypto to the Klaytn
                                                 network
                                             </label>
                                         </div>
