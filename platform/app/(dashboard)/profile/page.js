@@ -15,15 +15,16 @@ const Profile = async () => {
         },
     });
 
-    if (response.status !== 200) {
+    let user = {};
+
+    if (response.status === 200) {
         const res = await response.json();
 
-        const user = res.data;
+        user = res.data;
 
         console.log("Got user: ", user);
     } else {
         console.log("No user found", response.statusText, response.status);
-        const user = {};
     }
 
     return (
