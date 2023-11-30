@@ -131,7 +131,7 @@ const ExchangeForm = () => {
                     data: "0x0123456789abcdef", //Invalid data to trigger fallback function
                 })
                 .then(async (tx) => {
-                    console.log("txId Swap", txId);
+                    console.log("tx:", tx);
 
                     setKlayBalance(
                         Number(klayBalance) - Number(swapAmountInKlay)
