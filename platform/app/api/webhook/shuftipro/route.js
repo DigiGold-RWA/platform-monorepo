@@ -7,7 +7,7 @@ export const maxDuration = 300;
 export async function POST(request) {
     const data = await request.json();
 
-    console.log(data);
+    console.log(data.verification_data?.document);
 
     if (data.reference) {
         const profile = await User.findOne({
