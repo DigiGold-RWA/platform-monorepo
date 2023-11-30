@@ -10,14 +10,21 @@ const Profile = async () => {
     const appSession = cookies().get("appSession")?.value;
     const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
     const response = await fetch(`${hostUrl}/api/customer/profile`, {
-        credentials: "same-origin",
         headers: {
             Cookie: `appSession=${appSession}`,
         },
     });
-    const res = await response.json();
 
-    const user = res.data;
+    if (response.status !== 200) {
+        const res = await response.json();
+
+        const user = res.data;
+
+        console.log("Got user: ", user);
+    } else {
+        console.log("No user found", response.statusText, response.status);
+        const user = {};
+    }
 
     return (
         user && (
@@ -94,7 +101,7 @@ const Profile = async () => {
                         <p>
                             Please send a{" "}
                             <Link
-                                href="mailto:info@digicask.finance"
+                                href="mailto:info@digigold.finance"
                                 className="text-[#FFCC29]"
                             >
                                 support ticket
