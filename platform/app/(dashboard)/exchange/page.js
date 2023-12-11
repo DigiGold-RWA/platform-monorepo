@@ -1,12 +1,4 @@
-"use client";
-import { useDisclosure, Button } from "@chakra-ui/react";
-import CardComponent from "@/app/components/PageLayout/CardComponent";
-import MainComponent from "@/app/components/PageLayout/MainComponent";
 import { PageTitle } from "@/app/components/PageLayout/PageTitle";
-import React, { useRef, useState, useEffect } from "react";
-// import { investmentData } from "@/public/data";
-import axios from "axios";
-import Image from "next/image";
 import ExchangeForm from "@/app/components/Forms/ExchangeForm";
 import ExchangeChart from "@/app/components/Charts/ExchangeChart";
 

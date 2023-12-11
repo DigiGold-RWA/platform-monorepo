@@ -189,7 +189,7 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex flex-col justify-center items-center w-full">
                         <h1 className="text-center text-4xl font-bold leading-snug text-white">
-                            How it works
+                            See How it works
                         </h1>
                     </div>
                     <div className="relative pt-5 pb-10">

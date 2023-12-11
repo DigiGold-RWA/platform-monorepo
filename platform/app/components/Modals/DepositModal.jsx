@@ -312,7 +312,7 @@ function DepositModal({ isOpen, onClose, user, profile, walletAddress }) {
                                 <div
                                     className="px-6"
                                     style={{ height: "650px" }}
-                                    id="rampView"
+                                    id="rampViews" //disable ramp
                                 ></div>
                             )}
                         </div>

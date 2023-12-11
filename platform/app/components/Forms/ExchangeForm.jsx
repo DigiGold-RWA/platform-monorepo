@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { CopyIcon, LoaderIcon } from "../IconComponent";
 import { ArrowSwapHorizontal, ArrowSwapVertical } from "iconsax-react";

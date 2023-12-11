@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
@@ -15,12 +14,12 @@ const VideoPlayer = () => {
         fluid: true,
         sources: [
             {
-                src: "#",
+                src: "https://digicask.s3.ap-south-1.amazonaws.com/digigold-demo-short-clip.mov",
                 type: "video/mp4",
             },
         ],
         preload: "auto",
-        poster: "/images/videoposterlight.png",
+        poster: "/images/platform_screen.png",
     };
 
     const videoRef = useRef(null);
@@ -36,20 +35,20 @@ const VideoPlayer = () => {
             playerRef.current = videojs(videoElement, options);
         }
 
-        // return () => {
-        //     //   const player = playerRef.current;
-        //     if (player) {
-        //         player.dispose();
-        //         playerRef.current = null;
-        //     }
-        // };
+        return () => {
+            //   const player = playerRef.current;
+            if (player) {
+                player.dispose();
+                playerRef.current = null;
+            }
+        };
     }, [options, videoRef, playerRef]);
 
     return (
         <div data-vjs-player>
             <video
                 ref={videoRef}
-                className={`video-js vjs-big-play-centered vjs-theme-sea h-52`}
+                className={`video-js vjs-big-play-centered vjs-theme-sea h-52 border  border-[#FFCC29] rounded`}
             />
         </div>
     );
