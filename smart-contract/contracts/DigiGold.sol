@@ -53,7 +53,7 @@ contract DigiGold is
 
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(PAUSER_ROLE, pauser);
-        _mint(msg.sender, 1562 * 10 ** decimals()); //1g ~ $64, Premint $100,000 ~ 1562g
+        _mint(msg.sender, 1562 * 10 ** decimals()); //1kg ~ $64, Premint $100,000 ~ 1562g
         _grantRole(MINTER_ROLE, minter);
         _grantRole(UPGRADER_ROLE, upgrader);
     }
