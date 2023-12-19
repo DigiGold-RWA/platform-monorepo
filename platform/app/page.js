@@ -246,7 +246,7 @@ export default function Home() {
                 <div className="container mx-auto max-w-6xl px-4 z-10">
                     <div className="flex flex-col justify-center items-center w-full max-w-4xl mx-auto mb-3 pb-8">
                         <h1 className="text-center text-4xl font-bold leading-snug text-white">
-                            Why choose $DGold?
+                            Why choose $DGOLD?
                         </h1>
                     </div>
                     <div

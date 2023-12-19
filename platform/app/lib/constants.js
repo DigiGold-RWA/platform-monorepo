@@ -27,7 +27,7 @@ export const Services = [
     },
     {
         title: "Redeem physical Gold for your token",
-        text: "When you owe more than 1kg of 1 $DGold , you can redeem it as physical Gold",
+        text: "When you owe more than 1g of 1 $DGOLD , you can redeem it as physical Gold",
     },
     {
         title: "Build your Gold Investment Portfolio",
@@ -79,16 +79,15 @@ export const menuLinks = [
 ];
 
 export const Help = [
-  { title: 'Launch a tokenized backed asset', value: 1 },
-  { title: 'List $DGold on your wallet/exchange', value: 2 },
-  {
-    title:
-      'Enable my customers to buy, sell and hold, or transfer digital assets',
-    value: 3,
-  },
-  { title: 'Integrate $DGold to your app', value: 4 },
-  { title: 'Settlement', value: 5 },
-  { title: 'Access $DGold', value: 6 },
+    { title: "Launch a tokenized backed asset", value: 1 },
+    { title: "List $DGOLD on your wallet/exchange", value: 2 },
+    {
+        title: "Enable my customers to buy, sell and hold, or transfer digital assets",
+        value: 3,
+    },
+    { title: "Integrate $DGOLD to your app", value: 4 },
+    { title: "Settlement", value: 5 },
+    { title: "Access $DGOLD", value: 6 },
 ];
 
 export const UseCases = [
